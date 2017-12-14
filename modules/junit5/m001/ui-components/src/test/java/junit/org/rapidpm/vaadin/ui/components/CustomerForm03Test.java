@@ -3,7 +3,7 @@ package junit.org.rapidpm.vaadin.ui.components;
 import com.vaadin.testbench.elements.ButtonElement;
 import com.vaadin.testbench.elements.FormLayoutElement;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  *

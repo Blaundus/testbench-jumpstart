@@ -2,8 +2,8 @@ package junit.org.rapidpm.vaadin.ui.app;
 
 import com.vaadin.testbench.TestBench;
 import com.vaadin.testbench.TestBenchTestCase;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -31,20 +31,20 @@ import static org.rapidpm.frp.Transformations.not;
 /**
  *
  */
-public abstract class BaseVaadinTestClass extends TestBenchTestCase{
+public abstract class BaseVaadinTestClass extends TestBenchTestCase {
 
 
   protected String url;
 
 
-  @Before
+  @BeforeEach
   public void setUp()
       throws Exception {
-    System.setProperty(MainUndertow.REST_PORT_PROPERTY , new PortUtils().nextFreePortForTest() + "");
-    System.setProperty(MainUndertow.SERVLET_PORT_PROPERTY , new PortUtils().nextFreePortForTest() + "");
-    System.setProperty(MainUndertow.SERVLET_HOST_PROPERTY , ipSupplierLocalIP.get());
-    System.setProperty(MainUndertow.REST_HOST_PROPERTY , ipSupplierLocalIP.get());
-    url = "http://"+ipSupplierLocalIP.get()+":" + System.getProperty(MainUndertow.SERVLET_PORT_PROPERTY) + MainUndertow.MYAPP; //from Annotation Servlet
+    System.setProperty(MainUndertow.REST_PORT_PROPERTY, new PortUtils().nextFreePortForTest() + "");
+    System.setProperty(MainUndertow.SERVLET_PORT_PROPERTY, new PortUtils().nextFreePortForTest() + "");
+    System.setProperty(MainUndertow.SERVLET_HOST_PROPERTY, ipSupplierLocalIP.get());
+    System.setProperty(MainUndertow.REST_HOST_PROPERTY, ipSupplierLocalIP.get());
+    url = "http://" + ipSupplierLocalIP.get() + ":" + System.getProperty(MainUndertow.SERVLET_PORT_PROPERTY) + MainUndertow.MYAPP; //from Annotation Servlet
     System.out.println("url = " + url);
 
     DI.clearReflectionModel();
@@ -54,17 +54,17 @@ public abstract class BaseVaadinTestClass extends TestBenchTestCase{
     Main.deploy();
 
 
-    final URL url = new URL("http://" + ipSupplierLocalIP.get() + ":4444/wd/hub");
+    final URL             url             = new URL("http://" + ipSupplierLocalIP.get() + ":4444/wd/hub");
     final RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, DesiredCapabilities.chrome());
-    final WebDriver webDriver = TestBench.createDriver(remoteWebDriver);
+    final WebDriver       webDriver       = TestBench.createDriver(remoteWebDriver);
 
     setDriver(webDriver);
 
     //data init -> depending on the Singleton
-    ((CustomerServiceImpl)CustomerServiceImpl.getInstance()).resetData();
+    ((CustomerServiceImpl) CustomerServiceImpl.getInstance()).resetData();
   }
 
-  @After
+  @AfterEach
   public void tearDown()
       throws Exception {
     ((CheckedExecutor) () -> getDriver().quit()).execute();
@@ -79,7 +79,6 @@ public abstract class BaseVaadinTestClass extends TestBenchTestCase{
 //    getDriver().get(url);
 //    Assert.assertTrue($(GridElement.class).exists());
 //  }
-
 
 
   Supplier<String> ipSupplierLocalIP = () -> {

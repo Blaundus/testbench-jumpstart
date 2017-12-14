@@ -2,8 +2,8 @@ package junit.org.rapidpm.vaadin.ui.components;
 
 import com.vaadin.testbench.TestBench;
 import com.vaadin.testbench.TestBenchTestCase;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -35,15 +35,15 @@ public abstract class BaseVaadinTestClass extends TestBenchTestCase {
 
   protected String url;
 
-  @Before
+  @BeforeEach
   public void setUp()
       throws Exception {
     final PortUtils utils = new PortUtils();
-    System.setProperty(REST_PORT_PROPERTY , utils.nextFreePortForTest() + "");
-    System.setProperty(SERVLET_PORT_PROPERTY , utils.nextFreePortForTest() + "");
-    System.setProperty(SERVLET_HOST_PROPERTY , ipSupplierLocalIP.get());
-    System.setProperty(REST_HOST_PROPERTY , ipSupplierLocalIP.get());
-    System.setProperty(MainUndertow.SHIRO_ACTIVE_PROPERTY , "false");
+    System.setProperty(REST_PORT_PROPERTY, utils.nextFreePortForTest() + "");
+    System.setProperty(SERVLET_PORT_PROPERTY, utils.nextFreePortForTest() + "");
+    System.setProperty(SERVLET_HOST_PROPERTY, ipSupplierLocalIP.get());
+    System.setProperty(REST_HOST_PROPERTY, ipSupplierLocalIP.get());
+    System.setProperty(MainUndertow.SHIRO_ACTIVE_PROPERTY, "false");
     url = "http://" + ipSupplierLocalIP.get() + ":" + System.getProperty(SERVLET_PORT_PROPERTY) + MainUndertow.MYAPP;
 
     DI.clearReflectionModel();
@@ -53,9 +53,9 @@ public abstract class BaseVaadinTestClass extends TestBenchTestCase {
     Main.deploy();
 
 
-    final URL hubURL = new URL("http://" + ipSupplierLocalIP.get() + ":4444/wd/hub");
-    final RemoteWebDriver remoteWebDriver = new RemoteWebDriver(hubURL , DesiredCapabilities.chrome());
-    final WebDriver webDriver = TestBench.createDriver(remoteWebDriver);
+    final URL             hubURL          = new URL("http://" + ipSupplierLocalIP.get() + ":4444/wd/hub");
+    final RemoteWebDriver remoteWebDriver = new RemoteWebDriver(hubURL, DesiredCapabilities.chrome());
+    final WebDriver       webDriver       = TestBench.createDriver(remoteWebDriver);
 
     setDriver(webDriver);
 //    setDriver(new ChromeDriver());
@@ -65,7 +65,7 @@ public abstract class BaseVaadinTestClass extends TestBenchTestCase {
 //    getDriver().manage().window().maximize();
   }
 
-  @After
+  @AfterEach
   public void tearDown()
       throws Exception {
     ((CheckedExecutor) () -> getDriver().quit()).execute();
@@ -93,11 +93,11 @@ public abstract class BaseVaadinTestClass extends TestBenchTestCase {
         .filter(not(InetAddress::isMulticastAddress))
         .map(InetAddress::getHostAddress)
         .filter(notEmpty())
-        .filter(adr -> notStartsWith().apply(adr , "127"))
-        .filter(adr -> notStartsWith().apply(adr , "169.254"))
-        .filter(adr -> notStartsWith().apply(adr , "255.255.255.255"))
-        .filter(adr -> notStartsWith().apply(adr , "255.255.255.255"))
-        .filter(adr -> notStartsWith().apply(adr , "0.0.0.0"))
+        .filter(adr -> notStartsWith().apply(adr, "127"))
+        .filter(adr -> notStartsWith().apply(adr, "169.254"))
+        .filter(adr -> notStartsWith().apply(adr, "255.255.255.255"))
+        .filter(adr -> notStartsWith().apply(adr, "255.255.255.255"))
+        .filter(adr -> notStartsWith().apply(adr, "0.0.0.0"))
         //            .filter(adr -> range(224, 240).noneMatch(nr -> adr.startsWith(valueOf(nr))))
         .findFirst().orElse("localhost");
   };

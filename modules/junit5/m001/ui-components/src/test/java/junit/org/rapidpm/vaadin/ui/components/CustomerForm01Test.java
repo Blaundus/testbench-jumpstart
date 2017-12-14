@@ -2,7 +2,7 @@ package junit.org.rapidpm.vaadin.ui.components;
 
 import com.vaadin.testbench.elements.TextFieldElement;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  *

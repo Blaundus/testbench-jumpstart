@@ -2,7 +2,7 @@ package junit.org.rapidpm.vaadin.ui.app;
 
 import com.vaadin.testbench.elements.GridElement;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.rapidpm.vaadin.srv.CustomerServiceImpl;
 
 /**

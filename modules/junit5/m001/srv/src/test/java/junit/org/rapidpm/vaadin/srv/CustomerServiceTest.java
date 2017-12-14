@@ -14,6 +14,8 @@ import org.rapidpm.vaadin.srv.CustomerServiceImpl;
 public class CustomerServiceTest {
 
 
+
+
   @Test
   void test001() {
 
@@ -25,9 +27,4 @@ public class CustomerServiceTest {
 
   }
 
-
-  @Test
-  void test002() {
-
-  }
 }

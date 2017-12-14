@@ -1,6 +1,6 @@
 package junit.org.rapidpm.vaadin.ui.components;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  *
