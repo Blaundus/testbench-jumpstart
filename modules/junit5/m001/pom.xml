@@ -3,13 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
-    <artifactId>testbench-jumpstart-modules-junit5</artifactId>
+    <artifactId>tb-jumpstart-m-junit5</artifactId>
     <groupId>org.rapidpm.vaadin</groupId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>testbench-jumpstart-modules-junit5-m001</artifactId>
+  <artifactId>tb-jumpstart-m-junit5-m001</artifactId>
   <packaging>pom</packaging>
   <modules>
     <module>srv</module>

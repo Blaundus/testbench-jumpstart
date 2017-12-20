@@ -96,7 +96,7 @@
     <!--TDD-->
     <jacoco.version>0.7.9</jacoco.version>
     <pitest-prod-classes>org.rapidpm.vaadin*</pitest-prod-classes>
-    <pitest-test-classes>junit.org.rapidpm.*</pitest-test-classes>
+    <pitest-test-classes>junit.org.rapidpm*</pitest-test-classes>
 
     <!--logging-->
     <slf4j.version>1.7.25</slf4j.version>
@@ -105,6 +105,7 @@
     <!--RapidPM bundles-->
     <rapidpm-microservice.version>1.0.0</rapidpm-microservice.version>
     <rapidpm-functional-vaadin-addons.version>0.1.0</rapidpm-functional-vaadin-addons.version>
+    <pitest.version>1.2.5</pitest.version>
   </properties>
 
 
@@ -132,41 +133,51 @@
       <!--Demo 01-->
       <dependency>
         <groupId>org.rapidpm.vaadin</groupId>
-        <artifactId>testbench-jumpstart-modules-demos-demo01</artifactId>
+        <artifactId>tb-jumpstart-m-demos-demo01</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <!--Demo02-->
       <dependency>
         <groupId>org.rapidpm.vaadin</groupId>
-        <artifactId>testbench-jumpstart-modules-demos-demo02-shared</artifactId>
+        <artifactId>tb-jumpstart-m-demos-demo02-shared</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.rapidpm.vaadin</groupId>
-        <artifactId>testbench-jumpstart-modules-demos-demo02-srv</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.rapidpm.vaadin</groupId>
-        <artifactId>testbench-jumpstart-modules-demos-demo02-ui</artifactId>
+        <artifactId>tb-jumpstart-m-demos-demo02-srv</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.rapidpm.vaadin</groupId>
-        <artifactId>testbench-jumpstart-modules-demos-demo02-ui-components</artifactId>
+        <artifactId>tb-jumpstart-m-demos-demo02-ui</artifactId>
         <version>${project.version}</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.rapidpm.vaadin</groupId>
+        <artifactId>tb-jumpstart-m-demos-demo02-ui-components</artifactId>
+        <version>${project.version}</version>
+      </dependency>
 
+      <dependency>
+        <groupId>org.rapidpm.vaadin</groupId>
+        <artifactId>tb-jumpstart-m-demos-demo03-shared</artifactId>
+        <version>${project.version}</version>
+      </dependency>
 
+      <dependency>
+        <groupId>org.rapidpm.vaadin</groupId>
+        <artifactId>tb-jumpstart-m-demos-demo03-srv</artifactId>
+        <version>${project.version}</version>
+      </dependency>
 
-
-
-
-
+      <dependency>
+        <groupId>org.rapidpm.vaadin</groupId>
+        <artifactId>tb-jumpstart-m-demos-demo03-ui-components</artifactId>
+        <version>${project.version}</version>
+      </dependency>
 
       <!--RapidPM stuff  -->
       <dependency>
@@ -180,7 +191,7 @@
       <dependency>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-vaadin-addons-modules-testbench</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.1.0</version>
       </dependency>
 
 
@@ -224,30 +235,30 @@
     </pluginManagement>
 
     <plugins>
-      <plugin>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>integration-test</goal>
-              <goal>verify</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <includes>
-            <include>**/org/rapidpm/**/</include>
-          </includes>
-          <!-- So that the browser correctly gains focus on Mac
-              OS X -->
-          <systemProperties>
-            <property>
-              <name>java.awt.headless</name>
-              <value>true</value>
-            </property>
-          </systemProperties>
-        </configuration>
-      </plugin>
+      <!--<plugin>-->
+      <!--<artifactId>maven-failsafe-plugin</artifactId>-->
+      <!--<executions>-->
+      <!--<execution>-->
+      <!--<goals>-->
+      <!--<goal>integration-test</goal>-->
+      <!--<goal>verify</goal>-->
+      <!--</goals>-->
+      <!--</execution>-->
+      <!--</executions>-->
+      <!--<configuration>-->
+      <!--<includes>-->
+      <!--<include>**/org/rapidpm/**/</include>-->
+      <!--</includes>-->
+      <!--&lt;!&ndash; So that the browser correctly gains focus on Mac-->
+      <!--OS X &ndash;&gt;-->
+      <!--<systemProperties>-->
+      <!--<property>-->
+      <!--<name>java.awt.headless</name>-->
+      <!--<value>true</value>-->
+      <!--</property>-->
+      <!--</systemProperties>-->
+      <!--</configuration>-->
+      <!--</plugin>-->
     </plugins>
   </build>
 
@@ -264,7 +275,7 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>1.2.5</version>
+            <version>${pitest.version}</version>
             <configuration>
               <threads>2</threads>
               <outputFormats>
@@ -277,7 +288,7 @@
               <targetTests>
                 <param>${pitest-test-classes}</param>
               </targetTests>
-              <useSlf4j>true</useSlf4j>
+              <useSlf4j>false</useSlf4j>
               <excludedMethods>
                 <excludedMethod>setSizeUndefined</excludedMethod>
               </excludedMethods>
@@ -286,6 +297,31 @@
               <historyOutputFile>target/pit-history.txt</historyOutputFile>
             </configuration>
           </plugin>
+          <!--<plugin>-->
+            <!--<groupId>fr.inria.stamp.plugins</groupId>-->
+            <!--<artifactId>pitmp-maven-plugin</artifactId>-->
+            <!--<version>1.0.1</version>-->
+            <!--&lt;!&ndash; list all the packages of the project that contain classes you want to mutate-->
+            <!--&ndash;&gt;-->
+            <!--<configuration>-->
+              <!--<targetClasses>-->
+                <!--<param>org.rapidpm.vaadin.*</param>-->
+                <!--&lt;!&ndash;<param>another.package.of.classes.to.mutate*</param>&ndash;&gt;-->
+              <!--</targetClasses>-->
+              <!--<useSlf4j>false</useSlf4j>-->
+              <!--<outputFormats>-->
+                <!--<format>html</format>-->
+              <!--</outputFormats>-->
+            <!--</configuration>-->
+            <!--<dependencies>-->
+              <!--<dependency>-->
+                <!--<groupId>org.pitest</groupId>-->
+                <!--<artifactId>pitest-maven</artifactId>-->
+                <!--<version>1.2.0</version>-->
+                <!--&lt;!&ndash;<version>1.2.5</version>&ndash;&gt;-->
+              <!--</dependency>-->
+            <!--</dependencies>-->
+          <!--</plugin>-->
         </plugins>
       </build>
       <reporting>
@@ -293,6 +329,7 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
+            <version>${pitest.version}</version>
             <reportSets>
               <reportSet>
                 <reports>
