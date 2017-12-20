@@ -34,6 +34,10 @@ and really hard bound together.
 This is the same app as you could find in the demo01 module.
 But here the structure is more like an industrial project.
 
+### modules - demos - demo03
+As before the app itself is the same, but now 
+the code itself is optimized for industrial production like 
+UI Testing. 
 
 
 
@@ -48,12 +52,17 @@ In the module **m001** you will find the tests for the demo01 - app
 ### modules - junit4 - m002
 In the module **m002** you will find the tests for the demo02 - app
 
-
 ## modules - junit5
 
-### modules - junit4 - m002
+### modules - junit5 - m001
 In the module **m002** you will find the tests for the demo02 - app
 
+### modules - junit5 - m002
+In the module **m002** you will find the tests for the demo02 - app
 
+### modules - junit5 - m003
+In the module **m003** you will find the tests for the demo03 - app
+Here I will show how to use the Vaadin AddOn 
+[https://github.com/vaadin-developer/vaadin-addons](https://github.com/vaadin-developer/vaadin-addons)
+and the optimized PageObject Pattern.
 
-The tests are divided into component tests 
