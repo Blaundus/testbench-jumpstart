@@ -45,7 +45,8 @@ public class CustomerForm extends FormLayout implements HasLogger {
     beanBinder.setBean(customer);
 
     // Show delete button for only customers already in the database
-    delete.setVisible(customer.isPersisted());
+    boolean visible = (customer != null) && customer.isPersisted();
+    delete.setVisible(visible);
     setVisible(true);
     firstName.selectAll();
   }
@@ -61,5 +62,4 @@ public class CustomerForm extends FormLayout implements HasLogger {
     myUI.updateList();
     setVisible(false);
   }
-
 }

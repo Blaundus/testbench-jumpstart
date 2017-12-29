@@ -97,4 +97,9 @@ public class CustomerService implements HasLogger {
     }
   }
 
+  public void resetData() {
+    instance.contacts.clear();
+    ensureTestData();
+  }
+
 }
