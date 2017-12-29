@@ -9,8 +9,10 @@ public class CustomerFormPageObject extends BaseVaadinTestClass {
 
 
   public String getLastName() {
-    return $(FormLayoutElement.class).$(TextFieldElement.class).
-        get(1).getValue();
+    return $(FormLayoutElement.class)
+        .$(TextFieldElement.class)
+        .get(1)
+        .getValue();
   }
 
   public String getFirstName() {
@@ -18,18 +20,23 @@ public class CustomerFormPageObject extends BaseVaadinTestClass {
   }
 
   public TextFieldElement firstnameTF() {
-    return $(FormLayoutElement.class).$(TextFieldElement.class).
-        first();
+    return $(FormLayoutElement.class)
+        .$(TextFieldElement.class)
+        .first();
   }
 
   public void setLastName(String lastName) {
-    $(FormLayoutElement.class).$(TextFieldElement.class).
-        get(1).setValue(lastName);
+    $(FormLayoutElement.class)
+        .$(TextFieldElement.class)
+        .get(1)
+        .setValue(lastName);
   }
 
   public void setFirstName(String firstName) {
-    $(FormLayoutElement.class).$(TextFieldElement.class).
-        first().setValue(firstName);
+    $(FormLayoutElement.class)
+        .$(TextFieldElement.class)
+        .first()
+        .setValue(firstName);
   }
 
   public void saveEntry() {
@@ -41,15 +48,23 @@ public class CustomerFormPageObject extends BaseVaadinTestClass {
   }
 
   public ButtonElement deleteButton() {
-    return $(FormLayoutElement.class).$(ButtonElement.class).caption("Delete").first();
+    return $(FormLayoutElement.class)
+        .$(ButtonElement.class)
+        .caption("Delete")
+        .first();
   }
 
   public ButtonElement saveButton() {
-    return $(FormLayoutElement.class).$(ButtonElement.class).caption("Save").first();
+    return $(FormLayoutElement.class)
+        .$(ButtonElement.class)
+        .caption("Save")
+        .first();
   }
 
   public NativeSelectElement statusSelect() {
-    return $(NativeSelectElement.class).caption("Status").first();
+    return $(NativeSelectElement.class)
+        .caption("Status")
+        .first();
   }
 
 

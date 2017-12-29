@@ -11,12 +11,14 @@ public class AddressBook extends BaseVaadinTestClass {
 
   public String getLastNameAtIndex(int index) {
     return $(GridElement.class).first()
-                               .getCell(index, 1).getText();
+                               .getCell(index, 1)
+                               .getText();
   }
 
   public String getFirstNameAtIndex(int index) {
     return $(GridElement.class).first()
-                               .getCell(index, 0).getText();
+                               .getCell(index, 0)
+                               .getText();
   }
 
   public CustomerFormPageObject selectEntryAtIndex(int index) {
