@@ -1,39 +1,39 @@
 package org.rapidpm.vaadin.ui.components;
 
+import com.vaadin.data.Binder;
+import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
+import org.rapidpm.dependencies.core.logger.HasLogger;
+import org.rapidpm.vaadin.shared.Customer;
+import org.rapidpm.vaadin.shared.CustomerStatus;
+
 import java.io.Serializable;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.vaadin.ui.*;
-import org.rapidpm.dependencies.core.logger.HasLogger;
-import org.rapidpm.vaadin.shared.Customer;
-import org.rapidpm.vaadin.shared.CustomerStatus;
-import com.vaadin.data.Binder;
-import com.vaadin.event.ShortcutAction.KeyCode;
-import com.vaadin.ui.themes.ValoTheme;
-
 public class CustomerForm extends Composite implements HasLogger {
 
-  private final TextField firstName = new TextField("First name");
-  private final TextField lastName = new TextField("Last name");
-  private final TextField email = new TextField("Email");
-  private final NativeSelect<CustomerStatus> status = new NativeSelect<>("Status");
-  private final DateField birthday = new DateField("Birthday");
-  private final Button save = new Button("Save");
-  private final Button delete = new Button("Delete");
+  private final TextField                    firstName = new TextField("First name");
+  private final TextField                    lastName  = new TextField("Last name");
+  private final TextField                    email     = new TextField("Email");
+  private final NativeSelect<CustomerStatus> status    = new NativeSelect<>("Status");
+  private final DateField                    birthday  = new DateField("Birthday");
+  private final Button                       save      = new Button("Save");
+  private final Button                       delete    = new Button("Delete");
 
   private final Binder<Customer> beanBinder = new Binder<>(Customer.class);
 
   private Customer customer;
 
-  private final Set<UpdateEvent> saveListeners = ConcurrentHashMap.newKeySet();
+  private final Set<UpdateEvent> saveListeners   = ConcurrentHashMap.newKeySet();
   private final Set<UpdateEvent> deleteListeners = ConcurrentHashMap.newKeySet();
 
 
   public CustomerForm() {
-    final FormLayout layout = new FormLayout();
-    final HorizontalLayout buttons = new HorizontalLayout(save , delete);
-    layout.addComponents(firstName , lastName , email , status , birthday , buttons);
+    final FormLayout       layout  = new FormLayout();
+    final HorizontalLayout buttons = new HorizontalLayout(save, delete);
+    layout.addComponents(firstName, lastName, email, status, birthday, buttons);
 
     status.setItems(CustomerStatus.values());
     save.setStyleName(ValoTheme.BUTTON_PRIMARY);
