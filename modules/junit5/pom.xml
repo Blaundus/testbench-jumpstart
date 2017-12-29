@@ -13,6 +13,7 @@
 
   <packaging>pom</packaging>
   <modules>
+    <module>m000</module>
     <module>m001</module>
     <module>m002</module>
     <module>m003</module>
