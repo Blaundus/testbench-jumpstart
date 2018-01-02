@@ -4,6 +4,7 @@ import com.vaadin.data.Binder;
 import com.vaadin.data.converter.StringToLongConverter;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.*;
+import org.rapidpm.vaadin.addons.framework.Registration;
 import org.rapidpm.vaadin.shared.Customer;
 import org.rapidpm.vaadin.shared.CustomerStatus;
 import org.rapidpm.vaadin.ui.components.CustomerForm;
@@ -21,40 +22,34 @@ import static org.rapidpm.frp.model.Result.success;
  */
 public class TestUI extends UI {
 
-  public static final String TEST_SWITCH_BUTTON = "testSwitchButton";
-  public static final String REGISTER_BUTTON = "testRegisterButton";
-  public static final String FIRST_NAME = "firstName";
-  public static final String LAST_NAME = "lastName";
-  public static final String EMAIL = "email";
-  public static final String BIRTHDAY = "birthday";
-  public static final String CUSTOMER_FORM = "customerForm";
-  public static final String ID = "customerID";
-
-
-  private Customer fromLastEvent;
-  private CustomerForm.Registration deleteRegistration;
-  private CustomerForm.Registration saveRegistration;
-  private final Button register = new Button("register");
-
+  public static final String                       TEST_SWITCH_BUTTON = "testSwitchButton";
+  public static final String                       REGISTER_BUTTON    = "testRegisterButton";
+  public static final String                       FIRST_NAME         = "firstName";
+  public static final String                       LAST_NAME          = "lastName";
+  public static final String                       EMAIL              = "email";
+  public static final String                       BIRTHDAY           = "birthday";
+  public static final String                       CUSTOMER_FORM      = "customerForm";
+  public static final String                       ID                 = "customerID";
+  private final       Button                       register           = new Button("register");
   // attributes for testing last Event.
-  private final TextField firstName = new TextField("First name");
-  private final TextField lastName = new TextField("Last name");
-  private final TextField email = new TextField("Email");
-  private final NativeSelect<CustomerStatus> status = new NativeSelect<>("Status");
-  private final DateField birthday = new DateField("Birthday");
-  private final TextField id = new TextField("Customer ID");
-
-
-  private final Binder<Customer> beanBinder = new Binder<>(Customer.class);
-
-  private final CustomerForm customerForm = new CustomerForm();
+  private final       TextField                    firstName          = new TextField("First name");
+  private final       TextField                    lastName           = new TextField("Last name");
+  private final       TextField                    email              = new TextField("Email");
+  private final       NativeSelect<CustomerStatus> status             = new NativeSelect<>("Status");
+  private final       DateField                    birthday           = new DateField("Birthday");
+  private final       TextField                    id                 = new TextField("Customer ID");
+  private final       Binder<Customer>             beanBinder         = new Binder<>(Customer.class);
+  private final       CustomerForm                 customerForm       = new CustomerForm();
+  private Customer     fromLastEvent;
+  private Registration deleteRegistration;
+  private Registration saveRegistration;
 
   @Override
   protected void init(VaadinRequest request) {
     beanBinder
         .forField(id)
         .withConverter(new StringToLongConverter("Long Values only"))
-        .bind(Customer::getId , Customer::setId);
+        .bind(Customer::getId, Customer::setId);
 
     firstName.setId(FIRST_NAME);
     lastName.setId(LAST_NAME);
@@ -72,7 +67,7 @@ public class TestUI extends UI {
 
     final CustomerForm.UpdateEvent updateEvenDelete = customer -> {
       fromLastEvent = customer;
-      fromLastEvent.setId(- 1L);
+      fromLastEvent.setId(-1L);
       beanBinder.setBean(fromLastEvent);
 
     };
@@ -89,12 +84,13 @@ public class TestUI extends UI {
 
     //make Customer from last Event available
     final VerticalLayout testAttibutes = new VerticalLayout();
-    testAttibutes.addComponents(id ,
-                                firstName ,
-                                lastName ,
-                                email ,
-                                birthday ,
-                                status);
+    testAttibutes.addComponents(id,
+                                firstName,
+                                lastName,
+                                email,
+                                birthday,
+                                status
+    );
     beanBinder.bindInstanceFields(this);
 
     // button to make Form visible again
@@ -107,11 +103,11 @@ public class TestUI extends UI {
     register.addClickListener(
         e ->
             match(
-                matchCase(() -> failure(" an exceptional behavior...")) ,
+                matchCase(() -> failure(" an exceptional behavior...")),
                 matchCase(() -> deleteRegistration != null &&
-                                saveRegistration != null , () -> {
+                                saveRegistration != null, () -> {
                   final boolean removeDelete = deleteRegistration.remove();
-                  final boolean removeSave = saveRegistration.remove();
+                  final boolean removeSave   = saveRegistration.remove();
 
                   deleteRegistration = null;
                   saveRegistration = null;
@@ -119,10 +115,10 @@ public class TestUI extends UI {
                   return (removeDelete && removeSave)
                          ? success("Both registrations are removed")
                          : failure("Mistake removeDelete=" + removeDelete
-                                        + " removeSave " + removeSave);
-                }) ,
+                                   + " removeSave " + removeSave);
+                }),
                 matchCase(() -> deleteRegistration == null
-                                && saveRegistration == null , () -> {
+                                && saveRegistration == null, () -> {
 
                   deleteRegistration = customerForm.registerDeleteListener(updateEvenDelete);
                   saveRegistration = customerForm.registerSaveListener(updateEvenSave);
@@ -130,23 +126,23 @@ public class TestUI extends UI {
                   return (deleteRegistration != null && saveRegistration != null)
                          ? success("Both registrations are done")
                          : failure("Mistake deleteRegistration=" + deleteRegistration
-                                        + " saveRegistration " + saveRegistration);
+                                   + " saveRegistration " + saveRegistration);
                 })
             ).ifPresentOrElse(
-                success -> out.println("register Button - success = " + success) ,
+                success -> out.println("register Button - success = " + success),
                 failed -> { throw new RuntimeException(failed); }
             )
     );
 
 
-    final VerticalLayout layout = new VerticalLayout(customerForm , aSwitch , register , testAttibutes);
+    final VerticalLayout layout = new VerticalLayout(customerForm, aSwitch, register, testAttibutes);
 
     setContent(layout);
   }
 
   private void initCustomerValue() {
     fromLastEvent = new Customer();
-    fromLastEvent.setBirthDay(LocalDate.of(2010 , 10 , 10));
+    fromLastEvent.setBirthDay(LocalDate.of(2010, 10, 10));
     fromLastEvent.setEmail("xx.xxx@xx.xx");
     fromLastEvent.setFirstName("Max");
     fromLastEvent.setLastName("R");
@@ -157,8 +153,8 @@ public class TestUI extends UI {
 
   @Override
   public void detach() {
-    if (! deleteRegistration.remove()) throw new RuntimeException("DeleteRegistration failed to remove");
-    if (! saveRegistration.remove()) throw new RuntimeException("SaveRegistration failed to remove");
+    if (!deleteRegistration.remove()) throw new RuntimeException("DeleteRegistration failed to remove");
+    if (!saveRegistration.remove()) throw new RuntimeException("SaveRegistration failed to remove");
     super.detach();
   }
 }

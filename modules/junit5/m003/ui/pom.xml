@@ -21,7 +21,7 @@
 
     <dependency>
       <groupId>org.rapidpm.vaadin</groupId>
-      <artifactId>tb-jumpstart-m-demos-demo02-ui</artifactId>
+      <artifactId>tb-jumpstart-m-demos-demo03-ui</artifactId>
     </dependency>
 
     <!--RapidPM Microservice TDD -->
@@ -45,7 +45,6 @@
 
 
     <!--Testbench Add Ons-->
-
     <dependency>
       <groupId>org.rapidpm</groupId>
       <artifactId>rapidpm-vaadin-addons-modules-testbench</artifactId>

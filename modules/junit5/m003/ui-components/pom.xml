@@ -22,9 +22,13 @@
   <dependencies>
     <dependency>
       <groupId>org.rapidpm.vaadin</groupId>
-      <artifactId>tb-jumpstart-m-demos-demo02-ui-components</artifactId>
+      <artifactId>tb-jumpstart-m-demos-demo03-ui-components</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>org.rapidpm.dynamic-cdi</groupId>
+      <artifactId>rapidpm-dynamic-cdi-modules-core</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>org.rapidpm.microservice</groupId>

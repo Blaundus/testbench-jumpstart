@@ -1,11 +1,13 @@
 package junit.org.rapidpm.vaadin.ui.app;
 
 import com.vaadin.testbench.elements.ButtonElement;
-import com.vaadin.testbench.elements.FormLayoutElement;
-import com.vaadin.testbench.elements.NativeSelectElement;
+import com.vaadin.testbench.elements.ComboBoxElement;
 import com.vaadin.testbench.elements.TextFieldElement;
 import org.openqa.selenium.WebDriver;
 import org.rapidpm.vaadin.addons.testbench.junit5.pageobject.AbstractVaadinPageObject;
+import org.rapidpm.vaadin.ui.components.CustomerForm;
+
+import static org.rapidpm.vaadin.ui.components.CustomerForm.*;
 
 public class CustomerFormPageObject extends AbstractVaadinPageObject {
 
@@ -15,29 +17,28 @@ public class CustomerFormPageObject extends AbstractVaadinPageObject {
   }
 
 
+  public TextFieldElement lastNameTF() {
+    return textField().id(CustomerForm.TF_LAST_NAME_ID);
+  }
 
   public String getLastName() {
-    return $(FormLayoutElement.class).$(TextFieldElement.class).
-        get(1).getValue();
+    return lastNameTF().getValue();
+  }
+
+  public void setLastName(String lastName) {
+    lastNameTF().setValue(lastName);
   }
 
   public String getFirstName() {
     return firstnameTF().getValue();
   }
 
-  public TextFieldElement firstnameTF() {
-    return $(FormLayoutElement.class).$(TextFieldElement.class).
-        first();
-  }
-
-  public void setLastName(String lastName) {
-    $(FormLayoutElement.class).$(TextFieldElement.class).
-        get(1).setValue(lastName);
-  }
-
   public void setFirstName(String firstName) {
-    $(FormLayoutElement.class).$(TextFieldElement.class).
-        first().setValue(firstName);
+    firstnameTF().setValue(firstName);
+  }
+
+  public TextFieldElement firstnameTF() {
+    return textField().id(TF_FIRST_NAME_ID);
   }
 
   public void saveEntry() {
@@ -49,15 +50,15 @@ public class CustomerFormPageObject extends AbstractVaadinPageObject {
   }
 
   public ButtonElement deleteButton() {
-    return $(FormLayoutElement.class).$(ButtonElement.class).caption("Delete").first();
+    return btn().id(BTN_DELETE_ID);
   }
 
   public ButtonElement saveButton() {
-    return $(FormLayoutElement.class).$(ButtonElement.class).caption("Save").first();
+    return btn().id(BTN_SAVE_ID);
   }
 
-  public NativeSelectElement statusSelect() {
-    return $(NativeSelectElement.class).caption("Status").first();
+  public ComboBoxElement statusSelect() {
+    return comboBox().id(CB_STATUS_ID);
   }
 
 

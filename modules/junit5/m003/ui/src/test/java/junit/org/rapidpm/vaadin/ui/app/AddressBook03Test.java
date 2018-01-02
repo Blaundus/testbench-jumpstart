@@ -15,7 +15,7 @@ public class AddressBook03Test {
   public void test001(AddressBookPageObject pageObject) {
 
     //not thread save -> reload data for test
-    ((CustomerServiceImpl)CustomerServiceImpl.getInstance()).resetData();
+    ((CustomerServiceImpl) CustomerServiceImpl.getInstance()).resetData();
 
     pageObject.loadPage();
     //filter

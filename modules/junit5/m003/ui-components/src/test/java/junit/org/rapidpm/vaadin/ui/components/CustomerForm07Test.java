@@ -16,6 +16,5 @@ public class CustomerForm07Test {
     pageObject.clickRegisterButton();
 
 
-
   }
 }

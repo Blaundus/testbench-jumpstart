@@ -10,54 +10,54 @@ import static org.rapidpm.vaadin.ui.app.MyUI.*;
 
 public class AddressBookPageObject extends AbstractVaadinPageObject {
 
-
   public AddressBookPageObject(WebDriver webDriver) {
     super(webDriver);
   }
 
 
   public String getLastNameAtIndex(int index) {
-    return $(GridElement.class).first()
-                               .getCell(index, 1).getText();
+    return dataGrid()
+        .getCell(index, 1) //TODO reorder problem
+        .getText();
   }
 
   public String getFirstNameAtIndex(int index) {
-    return $(GridElement.class).first()
-                               .getCell(index, 0).getText();
+    return dataGrid()
+        .getCell(index, 0) //TODO reorder problem
+        .getText();
   }
 
   public CustomerFormPageObject selectEntryAtIndex(int index) {
-    $(GridElement.class).first()
-                        .getCell(index, 0).click();
-    final CustomerFormPageObject result = new CustomerFormPageObject(getDriver());
-    result.setDriver(getDriver());
-    return result;
+    dataGrid()
+        .getCell(index, 0) //TODO reorder problem
+        .click();
+    return new CustomerFormPageObject(getDriver());
   }
 
   public CustomerFormPageObject createNewEntry() {
-    $(ButtonElement.class).caption("Add new customer").first().click();
-    final CustomerFormPageObject result = new CustomerFormPageObject(getDriver());
-    result.setDriver(getDriver());
-    return result;
+    newCustomerBTN().click();
+    return new CustomerFormPageObject(getDriver());
   }
 
   public CustomerFormPageObject activeCustomerForm() {
-    final CustomerFormPageObject result = new CustomerFormPageObject(getDriver());
-    result.setDriver(getDriver());
-    return result;
+    return new CustomerFormPageObject(getDriver());
   }
 
 
   public TextFieldElement filterTextField() {
-    return $(TextFieldElement.class).id(FILTER_TF);
+    return textField().id(FILTER_TF_ID);
   }
 
   public GridElement dataGrid() {
-    return $(GridElement.class).id(DATA_GRID);
+    return grid().id(DATA_GRID_ID);
   }
 
   public ButtonElement clearFilterBTN() {
-    return $(ButtonElement.class).id(CLEAR_FILTER_BTN);
+    return btn().id(CLEAR_FILTER_BTN_ID);
+  }
+
+  public ButtonElement newCustomerBTN() {
+    return btn().id(NEW_CUSTOMER_BTN_ID);
   }
 
 }
