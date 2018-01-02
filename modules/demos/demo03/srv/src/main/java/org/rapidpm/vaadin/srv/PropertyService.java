@@ -6,5 +6,6 @@ package org.rapidpm.vaadin.srv;
 public interface PropertyService {
 
   String resolve(String key);
-  boolean hasKey(String keyy);
+
+  boolean hasKey(String key);
 }

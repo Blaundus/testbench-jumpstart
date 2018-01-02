@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>tb-jumpstart-m-demos-demo03</artifactId>
+    <groupId>org.rapidpm.vaadin</groupId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>tb-jumpstart-m-demos-demo03-ui</artifactId>
+
+
+
+  <dependencies>
+    <dependency>
+      <groupId>org.rapidpm.vaadin</groupId>
+      <artifactId>tb-jumpstart-m-demos-demo03-shared</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.rapidpm.vaadin</groupId>
+      <artifactId>tb-jumpstart-m-demos-demo03-srv</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.rapidpm.vaadin</groupId>
+      <artifactId>tb-jumpstart-m-demos-demo03-ui-components</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.rapidpm.microservice</groupId>
+      <artifactId>rapidpm-microservice-modules-core</artifactId>
+    </dependency>
+    <!--RapidPM Microservice -->
+    <dependency>
+      <groupId>org.rapidpm.microservice</groupId>
+      <artifactId>rapidpm-microservice-modules-optionals-metrics-health</artifactId>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.rapidpm</groupId>
+      <artifactId>rapidpm-vaadin-addons-modules-testbench</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
