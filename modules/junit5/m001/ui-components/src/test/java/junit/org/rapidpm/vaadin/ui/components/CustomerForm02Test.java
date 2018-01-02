@@ -18,10 +18,10 @@ public class CustomerForm02Test extends CustomerFormPageObject {
     final FormLayoutElement customerForm = $(FormLayoutElement.class).id(TestUI.CUSTOMER_FORM);
     Assert.assertTrue(customerForm.isDisplayed());
     deleteEntry();
-    Assert.assertEquals(0 , getDriver().findElements(new By.ById(TestUI.CUSTOMER_FORM)).size());
+    Assert.assertEquals(0, getDriver().findElements(new By.ById(TestUI.CUSTOMER_FORM)).size());
 
     final String id = $(TextFieldElement.class).id(TestUI.ID).getValue();
-    Assert.assertEquals("-1" , id);
+    Assert.assertEquals("-1", id);
   }
 
 
@@ -31,10 +31,10 @@ public class CustomerForm02Test extends CustomerFormPageObject {
     final FormLayoutElement customerForm = $(FormLayoutElement.class).id(TestUI.CUSTOMER_FORM);
     Assert.assertTrue(customerForm.isDisplayed());
     saveEntry();
-    Assert.assertEquals(0 , getDriver().findElements(new By.ById(TestUI.CUSTOMER_FORM)).size());
+    Assert.assertEquals(0, getDriver().findElements(new By.ById(TestUI.CUSTOMER_FORM)).size());
 
     final String id = $(TextFieldElement.class).id(TestUI.ID).getValue();
-    Assert.assertEquals("2" , id);
+    Assert.assertEquals("2", id);
   }
 
 

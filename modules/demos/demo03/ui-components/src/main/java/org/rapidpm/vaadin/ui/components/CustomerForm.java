@@ -2,11 +2,11 @@ package org.rapidpm.vaadin.ui.components;
 
 import com.vaadin.data.Binder;
 import com.vaadin.event.ShortcutAction.KeyCode;
-import com.vaadin.shared.Registration;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import org.rapidpm.ddi.DI;
 import org.rapidpm.dependencies.core.logger.HasLogger;
+import org.rapidpm.vaadin.addons.framework.Registration;
 import org.rapidpm.vaadin.shared.Customer;
 import org.rapidpm.vaadin.shared.CustomerStatus;
 import org.rapidpm.vaadin.srv.PropertyService;
@@ -138,6 +138,4 @@ public class CustomerForm extends Composite implements HasLogger {
   public interface UpdateEvent {
     void update(Customer customer);
   }
-
-
 }

@@ -2,7 +2,6 @@ package junit.org.rapidpm.vaadin.ui.app;
 
 import com.vaadin.testbench.elements.GridElement;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestTemplate;
 import org.rapidpm.vaadin.addons.testbench.junit5.extensions.seleniumhub.VaadinCompatTest;
 import org.rapidpm.vaadin.srv.CustomerServiceImpl;
@@ -23,8 +22,8 @@ public class AddressBook06Test {
     newEntry.setFirstName("Y");
     newEntry.saveEntry();
     final GridElement gridElement = pageObject.dataGrid();
-    final long rowCount = gridElement.getRowCount();
-    Assert.assertEquals(rowCount , firstCount + 1);
+    final long        rowCount    = gridElement.getRowCount();
+    Assert.assertEquals(rowCount, firstCount + 1);
 
   }
 }

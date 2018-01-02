@@ -1,7 +1,6 @@
 package junit.org.rapidpm.vaadin.ui.app;
 
-import java.io.File;
-
+import com.vaadin.testbench.TestBenchTestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -11,7 +10,8 @@ import org.rapidpm.dependencies.core.net.PortUtils;
 import org.rapidpm.frp.functions.CheckedExecutor;
 import org.rapidpm.microservice.Main;
 import org.rapidpm.microservice.MainUndertow;
-import com.vaadin.testbench.TestBenchTestCase;
+
+import java.io.File;
 
 /**
  *
@@ -22,26 +22,26 @@ public class BaseVaadinTestClass extends TestBenchTestCase {
 
   @BeforeClass
   public static void setUpClass() {
-    final String pointToStartFrom = new File("").getAbsolutePath();
+    final String pointToStartFrom     = new File("").getAbsolutePath();
     final String dataDriverBaseFolder = "/_data/webdrivers/";
 //    final String os = "osx";
 
 //    String basePath = pointToStartFrom + dataDriverBaseFolder + os;
     String basePath = pointToStartFrom + dataDriverBaseFolder;
     //TODO - operating system specific
-    System.setProperty("webdriver.chrome.driver" , basePath + "/chromedriver-mac-64bit");
-    System.setProperty("webdriver.gecko.driver" , basePath + "/geckodriver-mac-64bit");
-    System.setProperty("webdriver.safari.driver" , basePath + "/geckodriver-mac-64bit");
-    System.setProperty("webdriver.opera.driver" , basePath + "/operadriver-mac-64bit/operadriver");
-    System.setProperty("phantomjs.binary.path" , basePath + "/phantomjs-mac-64bit");
+    System.setProperty("webdriver.chrome.driver", basePath + "/chromedriver-mac-64bit");
+    System.setProperty("webdriver.gecko.driver", basePath + "/geckodriver-mac-64bit");
+    System.setProperty("webdriver.safari.driver", basePath + "/geckodriver-mac-64bit");
+    System.setProperty("webdriver.opera.driver", basePath + "/operadriver-mac-64bit/operadriver");
+    System.setProperty("phantomjs.binary.path", basePath + "/phantomjs-mac-64bit");
 
   }
 
   @Before
   public void setUp()
       throws Exception {
-    System.setProperty(MainUndertow.REST_PORT_PROPERTY , new PortUtils().nextFreePortForTest() + "");
-    System.setProperty(MainUndertow.SERVLET_PORT_PROPERTY , new PortUtils().nextFreePortForTest() + "");
+    System.setProperty(MainUndertow.REST_PORT_PROPERTY, new PortUtils().nextFreePortForTest() + "");
+    System.setProperty(MainUndertow.SERVLET_PORT_PROPERTY, new PortUtils().nextFreePortForTest() + "");
     url = "http://127.0.0.1:" + System.getProperty(MainUndertow.SERVLET_PORT_PROPERTY) + MainUndertow.MYAPP + "/test"; //from Annotation Servlet
     System.out.println("url = " + url);
 

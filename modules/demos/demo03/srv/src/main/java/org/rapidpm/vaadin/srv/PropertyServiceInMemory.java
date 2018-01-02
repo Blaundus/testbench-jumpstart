@@ -47,13 +47,13 @@ public class PropertyServiceInMemory implements PropertyService {
     storage.put("org.rapidpm.vaadin.demo.MyUI.dataGrid.col.email", "Email");
 
 
-    storage.put("org.rapidpm.vaadin.demo.CustomerForm.tf_first_name.caption","First name");
-    storage.put("org.rapidpm.vaadin.demo.CustomerForm.tf_last_name.caption","Last name");
-    storage.put("org.rapidpm.vaadin.demo.CustomerForm.tf_email.caption","Email");
-    storage.put("org.rapidpm.vaadin.demo.CustomerForm.cb_status.caption","Status");
-    storage.put("org.rapidpm.vaadin.demo.CustomerForm.df_birthday.caption","Birthday");
-    storage.put("org.rapidpm.vaadin.demo.CustomerForm.btn_save.caption","Save");
-    storage.put("org.rapidpm.vaadin.demo.CustomerForm.btn_delete.caption","Delete");
+    storage.put("org.rapidpm.vaadin.demo.CustomerForm.tf_first_name.caption", "First name");
+    storage.put("org.rapidpm.vaadin.demo.CustomerForm.tf_last_name.caption", "Last name");
+    storage.put("org.rapidpm.vaadin.demo.CustomerForm.tf_email.caption", "Email");
+    storage.put("org.rapidpm.vaadin.demo.CustomerForm.cb_status.caption", "Status");
+    storage.put("org.rapidpm.vaadin.demo.CustomerForm.df_birthday.caption", "Birthday");
+    storage.put("org.rapidpm.vaadin.demo.CustomerForm.btn_save.caption", "Save");
+    storage.put("org.rapidpm.vaadin.demo.CustomerForm.btn_delete.caption", "Delete");
 
   }
 }

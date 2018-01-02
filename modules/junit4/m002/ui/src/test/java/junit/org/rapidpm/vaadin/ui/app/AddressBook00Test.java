@@ -22,7 +22,7 @@ public class AddressBook00Test extends AddressBook {
     getDriver().get(url);
     clearFilterBTN().showTooltip();
     WebElement ttip = findElement(By.className("v-tooltip"));
-    assertEquals(ttip.getText() , "Clear the current filter");
+    assertEquals(ttip.getText(), "Clear the current filter");
 
   }
 
@@ -30,7 +30,7 @@ public class AddressBook00Test extends AddressBook {
   public void test002() {
     getDriver().get(url);
     final String placeholder = filterTextField().getAttribute("placeholder");
-    assertEquals(placeholder , "filter by name...");
+    assertEquals(placeholder, "filter by name...");
 
   }
 
@@ -39,13 +39,13 @@ public class AddressBook00Test extends AddressBook {
   public void test003() throws Exception {
     getDriver().get(url);
     final List<FormLayoutElement> allA = $(FormLayoutElement.class).recursive(true).all();
-    Assert.assertEquals(0 , allA.size());
-    final CustomerFormPageObject customerFormPageObject = selectEntryAtIndex(1);
-    final List<FormLayoutElement> allB = $(FormLayoutElement.class).recursive(true).all();
-    Assert.assertEquals(1 , allB.size());
+    Assert.assertEquals(0, allA.size());
+    final CustomerFormPageObject  customerFormPageObject = selectEntryAtIndex(1);
+    final List<FormLayoutElement> allB                   = $(FormLayoutElement.class).recursive(true).all();
+    Assert.assertEquals(1, allB.size());
     customerFormPageObject.saveEntry();
     final List<FormLayoutElement> allC = $(FormLayoutElement.class).recursive(true).all();
-    Assert.assertEquals(0 , allC.size());
+    Assert.assertEquals(0, allC.size());
   }
 
 

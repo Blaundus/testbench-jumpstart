@@ -1,38 +1,33 @@
 package org.rapidpm.vaadin.ui.app;
 
-import java.util.List;
-
-import javax.servlet.annotation.WebServlet;
-
-import org.rapidpm.frp.functions.CheckedExecutor;
-import org.rapidpm.vaadin.shared.Customer;
-import org.rapidpm.vaadin.srv.CustomerService;
-import org.rapidpm.vaadin.srv.CustomerServiceImpl;
-import org.rapidpm.vaadin.ui.components.CustomerForm;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.shared.ui.ValueChangeMode;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.CssLayout;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import org.rapidpm.frp.functions.CheckedExecutor;
+import org.rapidpm.vaadin.shared.Customer;
+import org.rapidpm.vaadin.srv.CustomerService;
+import org.rapidpm.vaadin.srv.CustomerServiceImpl;
+import org.rapidpm.vaadin.ui.components.CustomerForm;
+
+import javax.servlet.annotation.WebServlet;
+import java.util.List;
 
 public class MyUI extends UI {
 
-  public static final String FILTER_TF = "filterTF";
-  public static final String DATA_GRID = "dataGrid";
-  public static final String CLEAR_FILTER_BTN = "clearFilterBTN";
-  private CustomerService service = CustomerServiceImpl.getInstance();
-  private final Grid<Customer> grid = new Grid<>();
-  private final TextField filterText = new TextField();
-  private final Button clearFilterTextBtn = new Button(FontAwesome.TIMES);
-  private final CustomerForm customerForm = new CustomerForm();
+  public static final String          FILTER_TF          = "filterTF";
+  public static final String          DATA_GRID          = "dataGrid";
+  public static final String          CLEAR_FILTER_BTN   = "clearFilterBTN";
+  private final       Grid<Customer>  grid               = new Grid<>();
+  private final       TextField       filterText         = new TextField();
+  private final       Button          clearFilterTextBtn = new Button(FontAwesome.TIMES);
+  private final       CustomerForm    customerForm       = new CustomerForm();
+  private             CustomerService service            = CustomerServiceImpl.getInstance();
+  private CustomerForm.Registration deleteRegistration;
+  private CustomerForm.Registration saveRegistration;
 
   @Override
   protected void init(VaadinRequest vaadinRequest) {
@@ -51,7 +46,7 @@ public class MyUI extends UI {
     clearFilterTextBtn.addClickListener(e -> filterText.clear());
 
     CssLayout filtering = new CssLayout();
-    filtering.addComponents(filterText , clearFilterTextBtn);
+    filtering.addComponents(filterText, clearFilterTextBtn);
     filtering.setStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
 
     Button addCustomerBtn = new Button("Add new customer");
@@ -60,18 +55,18 @@ public class MyUI extends UI {
       customerForm.setCustomer(new Customer());
     });
 
-    HorizontalLayout toolbar = new HorizontalLayout(filtering , addCustomerBtn);
+    HorizontalLayout toolbar = new HorizontalLayout(filtering, addCustomerBtn);
 
     grid.addColumn(Customer::getFirstName).setCaption("First Name");
     grid.addColumn(Customer::getLastName).setCaption("Last Name");
     grid.addColumn(Customer::getEmail).setCaption("Email");
 
-    HorizontalLayout main = new HorizontalLayout(grid , customerForm);
+    HorizontalLayout main = new HorizontalLayout(grid, customerForm);
     main.setSizeFull();
     grid.setSizeFull();
-    main.setExpandRatio(grid , 1);
+    main.setExpandRatio(grid, 1);
 
-    layout.addComponents(toolbar , main);
+    layout.addComponents(toolbar, main);
 
     // fetch list of Customers from service and assign it to Grid
     updateList();
@@ -97,9 +92,6 @@ public class MyUI extends UI {
       updateList();
     });
   }
-
-  private CustomerForm.Registration deleteRegistration;
-  private CustomerForm.Registration saveRegistration;
 
   @Override
   public void detach() {

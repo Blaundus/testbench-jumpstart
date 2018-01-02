@@ -10,8 +10,8 @@ public class Customer implements Serializable, HasLogger {
 
   private Long id;
   private String firstName = "";
-  private String lastName = "";
-  private LocalDate birthDate;
+  private String lastName  = "";
+  private LocalDate      birthDate;
   private CustomerStatus status;
   private String email = "";
 

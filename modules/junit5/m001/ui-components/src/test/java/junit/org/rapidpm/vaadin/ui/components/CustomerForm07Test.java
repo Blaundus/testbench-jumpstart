@@ -13,6 +13,5 @@ public class CustomerForm07Test extends CustomerFormPageObject {
     clickRegisterButton();
 
 
-
   }
 }

@@ -15,12 +15,12 @@ public class CustomerForm04Test extends CustomerFormPageObject {
     getDriver().get(url);
 
     Assert.assertNotNull(statusSelect());
-    Assert.assertEquals(CustomerStatus.values().length + 1 , statusSelect().getOptions().size());
+    Assert.assertEquals(CustomerStatus.values().length + 1, statusSelect().getOptions().size());
 
     statusSelect().selectByText(CustomerStatus.Contacted.name());
     saveEntry();
     clickSwitchButton();
-    Assert.assertEquals(statusSelect().getValue() , CustomerStatus.Contacted.name());
+    Assert.assertEquals(statusSelect().getValue(), CustomerStatus.Contacted.name());
 
   }
 }

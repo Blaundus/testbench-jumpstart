@@ -20,8 +20,8 @@ public class AddressBook06Test extends AddressBook {
     newEntry.setFirstName("Y");
     newEntry.saveEntry();
     final GridElement gridElement = dataGrid();
-    final long rowCount = gridElement.getRowCount();
-    Assert.assertEquals(rowCount , firstCount + 1);
+    final long        rowCount    = gridElement.getRowCount();
+    Assert.assertEquals(rowCount, firstCount + 1);
 
   }
 }

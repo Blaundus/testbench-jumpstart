@@ -4,7 +4,6 @@ package junit.org.rapidpm.vaadin.ui.app;
 import com.vaadin.testbench.By;
 import com.vaadin.testbench.elements.FormLayoutElement;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestTemplate;
 import org.openqa.selenium.WebElement;
 import org.rapidpm.vaadin.addons.testbench.junit5.extensions.seleniumhub.VaadinCompatTest;

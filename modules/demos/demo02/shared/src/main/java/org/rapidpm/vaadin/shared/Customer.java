@@ -11,10 +11,10 @@ import java.util.Objects;
 @SuppressWarnings("serial")
 public class Customer implements Serializable, HasLogger {
 
-  private Long id = -1L;
+  private Long   id        = -1L;
   private String firstName = "";
-  private String lastName = "";
-  private LocalDate birthDay;
+  private String lastName  = "";
+  private LocalDate      birthDay;
   private CustomerStatus status;
   private String email = "";
 
@@ -25,19 +25,19 @@ public class Customer implements Serializable, HasLogger {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (! (o instanceof Customer)) return false;
+    if (!(o instanceof Customer)) return false;
     Customer customer = (Customer) o;
-    return Objects.equals(id , customer.id) &&
-           Objects.equals(firstName , customer.firstName) &&
-           Objects.equals(lastName , customer.lastName) &&
-           Objects.equals(birthDay , customer.birthDay) &&
+    return Objects.equals(id, customer.id) &&
+           Objects.equals(firstName, customer.firstName) &&
+           Objects.equals(lastName, customer.lastName) &&
+           Objects.equals(birthDay, customer.birthDay) &&
            status == customer.status &&
-           Objects.equals(email , customer.email);
+           Objects.equals(email, customer.email);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id , firstName , lastName , birthDay , status , email);
+    return Objects.hash(id, firstName, lastName, birthDay, status, email);
   }
 
   @Override

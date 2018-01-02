@@ -15,16 +15,6 @@ public class CustomerFormPageObject extends BaseVaadinTestClass {
         .getValue();
   }
 
-  public String getFirstName() {
-    return firstnameTF().getValue();
-  }
-
-  public TextFieldElement firstnameTF() {
-    return $(FormLayoutElement.class)
-        .$(TextFieldElement.class)
-        .first();
-  }
-
   public void setLastName(String lastName) {
     $(FormLayoutElement.class)
         .$(TextFieldElement.class)
@@ -32,11 +22,21 @@ public class CustomerFormPageObject extends BaseVaadinTestClass {
         .setValue(lastName);
   }
 
+  public String getFirstName() {
+    return firstnameTF().getValue();
+  }
+
   public void setFirstName(String firstName) {
     $(FormLayoutElement.class)
         .$(TextFieldElement.class)
         .first()
         .setValue(firstName);
+  }
+
+  public TextFieldElement firstnameTF() {
+    return $(FormLayoutElement.class)
+        .$(TextFieldElement.class)
+        .first();
   }
 
   public void saveEntry() {

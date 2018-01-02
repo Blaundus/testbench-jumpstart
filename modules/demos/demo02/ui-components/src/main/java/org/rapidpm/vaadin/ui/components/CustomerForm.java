@@ -23,11 +23,9 @@ public class CustomerForm extends Composite implements HasLogger {
   private final Button                       delete    = new Button("Delete");
 
   private final Binder<Customer> beanBinder = new Binder<>(Customer.class);
-
-  private Customer customer;
-
   private final Set<UpdateEvent> saveListeners   = ConcurrentHashMap.newKeySet();
   private final Set<UpdateEvent> deleteListeners = ConcurrentHashMap.newKeySet();
+  private Customer customer;
 
 
   public CustomerForm() {

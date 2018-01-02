@@ -2,7 +2,6 @@ package junit.org.rapidpm.vaadin.ui.components;
 
 import com.vaadin.testbench.TestBench;
 import com.vaadin.testbench.TestBenchTestCase;
-
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
@@ -35,54 +34,6 @@ import static org.rapidpm.microservice.MainUndertow.*;
 public abstract class BaseVaadinTestClass extends TestBenchTestCase {
 
   protected String url;
-
-  @Before
-  public void setUp()
-      throws Exception {
-    final PortUtils utils = new PortUtils();
-    System.setProperty(REST_PORT_PROPERTY , utils.nextFreePortForTest() + "");
-    System.setProperty(SERVLET_PORT_PROPERTY , utils.nextFreePortForTest() + "");
-    System.setProperty(SERVLET_HOST_PROPERTY , ipSupplierLocalIP.get());
-    System.setProperty(REST_HOST_PROPERTY , ipSupplierLocalIP.get());
-    System.setProperty(MainUndertow.SHIRO_ACTIVE_PROPERTY , "false");
-    url = "http://" + ipSupplierLocalIP.get() + ":" + System.getProperty(SERVLET_PORT_PROPERTY) + MainUndertow.MYAPP;
-
-    DI.clearReflectionModel();
-    DI.activatePackages("org.rapidpm");
-    DI.activatePackages(this.getClass());
-    DI.activateDI(this);
-    Main.deploy();
-
-
-    final URL hubURL = new URL("http://" + ipSupplierLocalIP.get() + ":4444/wd/hub");
-    final RemoteWebDriver remoteWebDriver = new RemoteWebDriver(hubURL , DesiredCapabilities.chrome());
-    final WebDriver webDriver = TestBench.createDriver(remoteWebDriver);
-
-    setDriver(webDriver);
-//    setDriver(new ChromeDriver());
-//    setDriver(new FirefoxDriver());
-//    setDriver(new SafariDriver());
-//    setDriver(new OperaDriver());
-//    getDriver().manage().window().maximize();
-  }
-
-  @After
-  public void tearDown()
-      throws Exception {
-    ((CheckedExecutor) () -> getDriver().quit()).execute();
-    ((CheckedExecutor) Main::stop).execute();
-    ((CheckedExecutor) DI::clearReflectionModel).execute();
-
-  }
-
-  //TODO inheritance is slowing down without benefits
-//  @Test
-//  public void testAddressBook() {
-//    getDriver().get(url);
-//    Assert.assertTrue($(GridElement.class).exists());
-//  }
-
-
   Supplier<String> ipSupplierLocalIP = () -> {
     final CheckedSupplier<Enumeration<NetworkInterface>> checkedSupplier = NetworkInterface::getNetworkInterfaces;
 
@@ -94,13 +45,59 @@ public abstract class BaseVaadinTestClass extends TestBenchTestCase {
         .filter(not(InetAddress::isMulticastAddress))
         .map(InetAddress::getHostAddress)
         .filter(notEmpty())
-        .filter(adr -> notStartsWith().apply(adr , "127"))
-        .filter(adr -> notStartsWith().apply(adr , "169.254"))
-        .filter(adr -> notStartsWith().apply(adr , "255.255.255.255"))
-        .filter(adr -> notStartsWith().apply(adr , "255.255.255.255"))
-        .filter(adr -> notStartsWith().apply(adr , "0.0.0.0"))
+        .filter(adr -> notStartsWith().apply(adr, "127"))
+        .filter(adr -> notStartsWith().apply(adr, "169.254"))
+        .filter(adr -> notStartsWith().apply(adr, "255.255.255.255"))
+        .filter(adr -> notStartsWith().apply(adr, "255.255.255.255"))
+        .filter(adr -> notStartsWith().apply(adr, "0.0.0.0"))
         //            .filter(adr -> range(224, 240).noneMatch(nr -> adr.startsWith(valueOf(nr))))
         .findFirst().orElse("localhost");
   };
+
+  @Before
+  public void setUp()
+      throws Exception {
+    final PortUtils utils = new PortUtils();
+    System.setProperty(REST_PORT_PROPERTY, utils.nextFreePortForTest() + "");
+    System.setProperty(SERVLET_PORT_PROPERTY, utils.nextFreePortForTest() + "");
+    System.setProperty(SERVLET_HOST_PROPERTY, ipSupplierLocalIP.get());
+    System.setProperty(REST_HOST_PROPERTY, ipSupplierLocalIP.get());
+    System.setProperty(MainUndertow.SHIRO_ACTIVE_PROPERTY, "false");
+    url = "http://" + ipSupplierLocalIP.get() + ":" + System.getProperty(SERVLET_PORT_PROPERTY) + MainUndertow.MYAPP;
+
+    DI.clearReflectionModel();
+    DI.activatePackages("org.rapidpm");
+    DI.activatePackages(this.getClass());
+    DI.activateDI(this);
+    Main.deploy();
+
+
+    final URL             hubURL          = new URL("http://" + ipSupplierLocalIP.get() + ":4444/wd/hub");
+    final RemoteWebDriver remoteWebDriver = new RemoteWebDriver(hubURL, DesiredCapabilities.chrome());
+    final WebDriver       webDriver       = TestBench.createDriver(remoteWebDriver);
+
+    setDriver(webDriver);
+//    setDriver(new ChromeDriver());
+//    setDriver(new FirefoxDriver());
+//    setDriver(new SafariDriver());
+//    setDriver(new OperaDriver());
+//    getDriver().manage().window().maximize();
+  }
+
+  //TODO inheritance is slowing down without benefits
+//  @Test
+//  public void testAddressBook() {
+//    getDriver().get(url);
+//    Assert.assertTrue($(GridElement.class).exists());
+//  }
+
+  @After
+  public void tearDown()
+      throws Exception {
+    ((CheckedExecutor) () -> getDriver().quit()).execute();
+    ((CheckedExecutor) Main::stop).execute();
+    ((CheckedExecutor) DI::clearReflectionModel).execute();
+
+  }
 
 }

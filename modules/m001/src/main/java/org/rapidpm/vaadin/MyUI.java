@@ -1,22 +1,15 @@
 package org.rapidpm.vaadin;
 
-import java.util.List;
-
-import javax.servlet.annotation.WebServlet;
-
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.shared.ui.ValueChangeMode;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.CssLayout;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+
+import javax.servlet.annotation.WebServlet;
+import java.util.List;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window
@@ -27,10 +20,10 @@ import com.vaadin.ui.themes.ValoTheme;
  */
 public class MyUI extends UI {
 
-  private final Grid<Customer> grid = new Grid<>();
-  private final TextField filterText = new TextField();
-  private final CustomerForm form = new CustomerForm(this);
-  private CustomerService service = CustomerService.getInstance();
+  private final Grid<Customer>  grid       = new Grid<>();
+  private final TextField       filterText = new TextField();
+  private final CustomerForm    form       = new CustomerForm(this);
+  private       CustomerService service    = CustomerService.getInstance();
 
   @Override
   protected void init(VaadinRequest vaadinRequest) {
@@ -45,7 +38,7 @@ public class MyUI extends UI {
     clearFilterTextBtn.addClickListener(e -> filterText.clear());
 
     CssLayout filtering = new CssLayout();
-    filtering.addComponents(filterText , clearFilterTextBtn);
+    filtering.addComponents(filterText, clearFilterTextBtn);
     filtering.setStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
 
     Button addCustomerBtn = new Button("Add new customer");
@@ -54,18 +47,18 @@ public class MyUI extends UI {
       form.setCustomer(new Customer());
     });
 
-    HorizontalLayout toolbar = new HorizontalLayout(filtering , addCustomerBtn);
+    HorizontalLayout toolbar = new HorizontalLayout(filtering, addCustomerBtn);
 
     grid.addColumn(Customer::getFirstName).setCaption("First Name");
     grid.addColumn(Customer::getLastName).setCaption("Last Name");
     grid.addColumn(Customer::getEmail).setCaption("Email");
 
-    HorizontalLayout main = new HorizontalLayout(grid , form);
+    HorizontalLayout main = new HorizontalLayout(grid, form);
     main.setSizeFull();
     grid.setSizeFull();
-    main.setExpandRatio(grid , 1);
+    main.setExpandRatio(grid, 1);
 
-    layout.addComponents(toolbar , main);
+    layout.addComponents(toolbar, main);
 
     // fetch list of Customers from service and assign it to Grid
     updateList();

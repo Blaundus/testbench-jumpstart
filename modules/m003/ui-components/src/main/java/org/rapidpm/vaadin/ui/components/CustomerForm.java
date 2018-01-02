@@ -1,45 +1,38 @@
 package org.rapidpm.vaadin.ui.components;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-import org.rapidpm.vaadin.shared.Customer;
-import org.rapidpm.vaadin.shared.CustomerStatus;
-import org.rapidpm.vaadin.shared.HasLogger;
 import com.vaadin.data.Binder;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.shared.Registration;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.DateField;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.NativeSelect;
-import com.vaadin.ui.TextField;
+import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import org.rapidpm.vaadin.shared.Customer;
+import org.rapidpm.vaadin.shared.CustomerStatus;
+import org.rapidpm.vaadin.shared.HasLogger;
+
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CustomerForm extends FormLayout implements HasLogger {
 
-  private final TextField firstName = new TextField("First name");
-  private final TextField lastName = new TextField("Last name");
-  private final TextField email = new TextField("Email");
-  private final NativeSelect<CustomerStatus> status = new NativeSelect<>("Status");
-  private final DateField birthdate = new DateField("Birthday");
-  private final Button save = new Button("Save");
-  private final Button delete = new Button("Delete");
+  private final TextField                    firstName = new TextField("First name");
+  private final TextField                    lastName  = new TextField("Last name");
+  private final TextField                    email     = new TextField("Email");
+  private final NativeSelect<CustomerStatus> status    = new NativeSelect<>("Status");
+  private final DateField                    birthdate = new DateField("Birthday");
+  private final Button                       save      = new Button("Save");
+  private final Button                       delete    = new Button("Delete");
 
   private final Binder<Customer> beanBinder = new Binder<>(Customer.class);
-
-  private Customer customer;
-
-  private final List<UpdateEvent> saveListeners = new CopyOnWriteArrayList<>();
+  private final List<UpdateEvent> saveListeners   = new CopyOnWriteArrayList<>();
   private final List<UpdateEvent> deleteListeners = new CopyOnWriteArrayList<>();
+  private Customer customer;
 
 
   public CustomerForm() {
 
     setSizeUndefined();
-    HorizontalLayout buttons = new HorizontalLayout(save , delete);
-    addComponents(firstName , lastName , email , status , birthdate , buttons);
+    HorizontalLayout buttons = new HorizontalLayout(save, delete);
+    addComponents(firstName, lastName, email, status, birthdate, buttons);
 
     status.setItems(CustomerStatus.values());
     save.setStyleName(ValoTheme.BUTTON_PRIMARY);

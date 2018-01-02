@@ -35,7 +35,25 @@ public abstract class BaseVaadinTestClass extends TestBenchTestCase {
 
 
   protected String url;
+  Supplier<String> ipSupplierLocalIP = () -> {
+    final CheckedSupplier<Enumeration<NetworkInterface>> checkedSupplier = NetworkInterface::getNetworkInterfaces;
 
+    return Transformations.<NetworkInterface>enumToStream()
+        .apply(checkedSupplier.getOrElse(Collections::emptyEnumeration))
+        .map(NetworkInterface::getInetAddresses)
+        .flatMap(iaEnum -> Transformations.<InetAddress>enumToStream().apply(iaEnum))
+        .filter(inetAddress -> inetAddress instanceof Inet4Address)
+        .filter(not(InetAddress::isMulticastAddress))
+        .map(InetAddress::getHostAddress)
+        .filter(notEmpty())
+        .filter(adr -> notStartsWith().apply(adr, "127"))
+        .filter(adr -> notStartsWith().apply(adr, "169.254"))
+        .filter(adr -> notStartsWith().apply(adr, "255.255.255.255"))
+        .filter(adr -> notStartsWith().apply(adr, "255.255.255.255"))
+        .filter(adr -> notStartsWith().apply(adr, "0.0.0.0"))
+        //            .filter(adr -> range(224, 240).noneMatch(nr -> adr.startsWith(valueOf(nr))))
+        .findFirst().orElse("localhost");
+  };
 
   @BeforeEach
   public void setUp()
@@ -64,6 +82,13 @@ public abstract class BaseVaadinTestClass extends TestBenchTestCase {
     ((CustomerServiceImpl) CustomerServiceImpl.getInstance()).resetData();
   }
 
+  //TODO inheritance is slowing down without benefits
+//  @Test
+//  public void testAddressBook() {
+//    getDriver().get(url);
+//    Assert.assertTrue($(GridElement.class).exists());
+//  }
+
   @AfterEach
   public void tearDown()
       throws Exception {
@@ -72,33 +97,5 @@ public abstract class BaseVaadinTestClass extends TestBenchTestCase {
     ((CheckedExecutor) DI::clearReflectionModel).execute();
 
   }
-
-  //TODO inheritance is slowing down without benefits
-//  @Test
-//  public void testAddressBook() {
-//    getDriver().get(url);
-//    Assert.assertTrue($(GridElement.class).exists());
-//  }
-
-
-  Supplier<String> ipSupplierLocalIP = () -> {
-    final CheckedSupplier<Enumeration<NetworkInterface>> checkedSupplier = NetworkInterface::getNetworkInterfaces;
-
-    return Transformations.<NetworkInterface>enumToStream()
-        .apply(checkedSupplier.getOrElse(Collections::emptyEnumeration))
-        .map(NetworkInterface::getInetAddresses)
-        .flatMap(iaEnum -> Transformations.<InetAddress>enumToStream().apply(iaEnum))
-        .filter(inetAddress -> inetAddress instanceof Inet4Address)
-        .filter(not(InetAddress::isMulticastAddress))
-        .map(InetAddress::getHostAddress)
-        .filter(notEmpty())
-        .filter(adr -> notStartsWith().apply(adr, "127"))
-        .filter(adr -> notStartsWith().apply(adr, "169.254"))
-        .filter(adr -> notStartsWith().apply(adr, "255.255.255.255"))
-        .filter(adr -> notStartsWith().apply(adr, "255.255.255.255"))
-        .filter(adr -> notStartsWith().apply(adr, "0.0.0.0"))
-        //            .filter(adr -> range(224, 240).noneMatch(nr -> adr.startsWith(valueOf(nr))))
-        .findFirst().orElse("localhost");
-  };
 
 }

@@ -20,10 +20,10 @@ public class CustomerForm02Test {
     final FormLayoutElement customerForm = pageObject.$(FormLayoutElement.class).id(TestUI.CUSTOMER_FORM);
     Assert.assertTrue(customerForm.isDisplayed());
     pageObject.deleteEntry();
-    Assert.assertEquals(0 , pageObject.getDriver().findElements(new By.ById(TestUI.CUSTOMER_FORM)).size());
+    Assert.assertEquals(0, pageObject.getDriver().findElements(new By.ById(TestUI.CUSTOMER_FORM)).size());
 
     final String id = pageObject.$(TextFieldElement.class).id(TestUI.ID).getValue();
-    Assert.assertEquals("-1" , id);
+    Assert.assertEquals("-1", id);
   }
 
 
@@ -33,10 +33,10 @@ public class CustomerForm02Test {
     final FormLayoutElement customerForm = pageObject.$(FormLayoutElement.class).id(TestUI.CUSTOMER_FORM);
     Assert.assertTrue(customerForm.isDisplayed());
     pageObject.saveEntry();
-    Assert.assertEquals(0 , pageObject.getDriver().findElements(new By.ById(TestUI.CUSTOMER_FORM)).size());
+    Assert.assertEquals(0, pageObject.getDriver().findElements(new By.ById(TestUI.CUSTOMER_FORM)).size());
 
     final String id = pageObject.$(TextFieldElement.class).id(TestUI.ID).getValue();
-    Assert.assertEquals("2" , id);
+    Assert.assertEquals("2", id);
   }
 
 

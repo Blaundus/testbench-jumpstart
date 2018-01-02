@@ -1,16 +1,11 @@
 package org.rapidpm.vaadin.srv;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Random;
-
 import org.rapidpm.dependencies.core.logger.HasLogger;
 import org.rapidpm.vaadin.shared.Customer;
 import org.rapidpm.vaadin.shared.CustomerStatus;
+
+import java.time.LocalDate;
+import java.util.*;
 
 public class CustomerServiceImpl implements HasLogger, CustomerService {
 
@@ -48,19 +43,19 @@ public class CustomerServiceImpl implements HasLogger, CustomerService {
         logger().warning(ex.getMessage());
       }
     }
-    arrayList.sort((o1 , o2) -> (int) (o2.getId() - o1.getId()));
+    arrayList.sort((o1, o2) -> (int) (o2.getId() - o1.getId()));
     return arrayList;
   }
 
   @Override
-  public synchronized List<Customer> findAll(String stringFilter , int start , int maxresults) {
+  public synchronized List<Customer> findAll(String stringFilter, int start, int maxresults) {
     final List<Customer> arrayList = findAll(stringFilter);
-    arrayList.sort((o1 , o2) -> (int) (o2.getId() - o1.getId()));
+    arrayList.sort((o1, o2) -> (int) (o2.getId() - o1.getId()));
     int end = start + maxresults;
     if (end > arrayList.size()) {
       end = arrayList.size();
     }
-    return arrayList.subList(start , end);
+    return arrayList.subList(start, end);
   }
 
   @Override
@@ -75,29 +70,29 @@ public class CustomerServiceImpl implements HasLogger, CustomerService {
 
   @Override
   public synchronized void save(Customer entry) {
-    Objects.requireNonNull(entry , "Customer is null. Are you sure you have connected your form to the application as described in tutorial chapter 7?");
+    Objects.requireNonNull(entry, "Customer is null. Are you sure you have connected your form to the application as described in tutorial chapter 7?");
 
     //TOD show Notification
 
-    if (entry.getId() == - 1L) {
+    if (entry.getId() == -1L) {
       entry.setId((long) (contacts.size() + 1));
     }
-    contacts.put(entry.getId() , entry);
+    contacts.put(entry.getId(), entry);
   }
 
   public void ensureTestData() {
     if (findAll().isEmpty()) {
-      final String[] names = new String[]{"Gabrielle Patel" , "Brian Robinson" , "Eduardo Haugen" ,
-          "Koen Johansen" , "Alejandro Macdonald" , "Angel Karlsson" , "Yahir Gustavsson" , "Haiden Svensson" ,
-          "Emily Stewart" , "Corinne Davis" , "Ryann Davis" , "Yurem Jackson" , "Kelly Gustavsson" ,
-          "Eileen Walker" , "Katelyn Martin" , "Israel Carlsson" , "Quinn Hansson" , "Makena Smith" ,
-          "Danielle Watson" , "Leland Harris" , "Gunner Karlsen" , "Jamar Olsson" , "Lara Martin" ,
-          "Ann Andersson" , "Remington Andersson" , "Rene Carlsson" , "Elvis Olsen" , "Solomon Olsen" ,
-          "Jaydan Jackson" , "Bernard Nilsen"};
+      final String[] names = new String[]{"Gabrielle Patel", "Brian Robinson", "Eduardo Haugen",
+                                          "Koen Johansen", "Alejandro Macdonald", "Angel Karlsson", "Yahir Gustavsson", "Haiden Svensson",
+                                          "Emily Stewart", "Corinne Davis", "Ryann Davis", "Yurem Jackson", "Kelly Gustavsson",
+                                          "Eileen Walker", "Katelyn Martin", "Israel Carlsson", "Quinn Hansson", "Makena Smith",
+                                          "Danielle Watson", "Leland Harris", "Gunner Karlsen", "Jamar Olsson", "Lara Martin",
+                                          "Ann Andersson", "Remington Andersson", "Rene Carlsson", "Elvis Olsen", "Solomon Olsen",
+                                          "Jaydan Jackson", "Bernard Nilsen"};
       Random r = new Random(0);
       for (String name : names) {
         String[] split = name.split(" ");
-        Customer c = new Customer();
+        Customer c     = new Customer();
         c.setFirstName(split[0]);
         c.setLastName(split[1]);
         c.setEmail(split[0].toLowerCase() + "@" + split[1].toLowerCase() + ".com");

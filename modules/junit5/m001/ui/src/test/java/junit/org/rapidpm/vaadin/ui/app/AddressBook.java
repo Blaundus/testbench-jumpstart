@@ -11,17 +11,17 @@ public class AddressBook extends BaseVaadinTestClass {
 
   public String getLastNameAtIndex(int index) {
     return $(GridElement.class).first()
-                               .getCell(index , 1).getText();
+                               .getCell(index, 1).getText();
   }
 
   public String getFirstNameAtIndex(int index) {
     return $(GridElement.class).first()
-                               .getCell(index , 0).getText();
+                               .getCell(index, 0).getText();
   }
 
   public CustomerFormPageObject selectEntryAtIndex(int index) {
     $(GridElement.class).first()
-                        .getCell(index , 0).click();
+                        .getCell(index, 0).click();
     final CustomerFormPageObject result = new CustomerFormPageObject();
     result.setDriver(getDriver());
     return result;
@@ -41,16 +41,15 @@ public class AddressBook extends BaseVaadinTestClass {
   }
 
 
-
   public TextFieldElement filterTextField() {
     return $(TextFieldElement.class).id(FILTER_TF);
   }
 
-  public GridElement dataGrid(){
+  public GridElement dataGrid() {
     return $(GridElement.class).id(DATA_GRID);
   }
 
-  public ButtonElement clearFilterBTN(){
+  public ButtonElement clearFilterBTN() {
     return $(ButtonElement.class).id(CLEAR_FILTER_BTN);
   }
 

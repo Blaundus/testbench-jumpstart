@@ -10,11 +10,10 @@ import org.rapidpm.vaadin.srv.CustomerServiceImpl;
 public class AddressBook05Test extends AddressBook {
 
 
-
   @Test
   public void test001() throws Exception {
     getDriver().get(url);
-    Assert.assertEquals(dataGrid().getRowCount() , CustomerServiceImpl.getInstance().findAll().size());
+    Assert.assertEquals(dataGrid().getRowCount(), CustomerServiceImpl.getInstance().findAll().size());
 
   }
 

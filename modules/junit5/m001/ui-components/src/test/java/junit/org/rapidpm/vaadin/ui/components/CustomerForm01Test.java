@@ -18,19 +18,19 @@ public class CustomerForm01Test extends CustomerFormPageObject {
 
     setLastName(LAST_NAME_ONE);
     saveEntry();
-    Assert.assertEquals(LAST_NAME_ONE , $(TextFieldElement.class).id(TestUI.LAST_NAME).getValue());
+    Assert.assertEquals(LAST_NAME_ONE, $(TextFieldElement.class).id(TestUI.LAST_NAME).getValue());
     clickSwitchButton();
-    Assert.assertEquals(LAST_NAME_ONE , getLastName());
+    Assert.assertEquals(LAST_NAME_ONE, getLastName());
     setLastName(LAST_NAME_TWO);
     clickRegisterButton(); //Registrations off
     saveEntry();
-    Assert.assertEquals(LAST_NAME_ONE , $(TextFieldElement.class).id(TestUI.LAST_NAME).getValue());
+    Assert.assertEquals(LAST_NAME_ONE, $(TextFieldElement.class).id(TestUI.LAST_NAME).getValue());
     clickSwitchButton();
-    Assert.assertEquals(LAST_NAME_TWO , getLastName());
+    Assert.assertEquals(LAST_NAME_TWO, getLastName());
 //    setLastName(LAST_NAME_TWO); is from last time -> statefull component
     clickRegisterButton();
     saveEntry();
-    Assert.assertEquals(LAST_NAME_TWO , $(TextFieldElement.class).id(TestUI.LAST_NAME).getValue());
+    Assert.assertEquals(LAST_NAME_TWO, $(TextFieldElement.class).id(TestUI.LAST_NAME).getValue());
 
 
   }
@@ -40,21 +40,21 @@ public class CustomerForm01Test extends CustomerFormPageObject {
     getDriver().get(url);
     saveEntry();
 
-    Assert.assertEquals("2" , $(TextFieldElement.class).id(TestUI.ID).getValue());
+    Assert.assertEquals("2", $(TextFieldElement.class).id(TestUI.ID).getValue());
     clickSwitchButton();
     deleteEntry();
-    Assert.assertEquals("-1" , $(TextFieldElement.class).id(TestUI.ID).getValue());
+    Assert.assertEquals("-1", $(TextFieldElement.class).id(TestUI.ID).getValue());
     clickSwitchButton();
     saveEntry();
-    Assert.assertEquals("0" , $(TextFieldElement.class).id(TestUI.ID).getValue());
+    Assert.assertEquals("0", $(TextFieldElement.class).id(TestUI.ID).getValue());
     clickSwitchButton();
     clickRegisterButton(); // registrations off
     deleteEntry();
-    Assert.assertEquals("0" , $(TextFieldElement.class).id(TestUI.ID).getValue());
+    Assert.assertEquals("0", $(TextFieldElement.class).id(TestUI.ID).getValue());
     clickSwitchButton();
     clickRegisterButton(); // registrations on
     deleteEntry();
-    Assert.assertEquals("-1" , $(TextFieldElement.class).id(TestUI.ID).getValue());
+    Assert.assertEquals("-1", $(TextFieldElement.class).id(TestUI.ID).getValue());
 
   }
 }

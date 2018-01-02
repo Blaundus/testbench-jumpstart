@@ -2,20 +2,18 @@ package org.rapidpm.vaadin.ui.app;
 
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.shared.Registration;
 import com.vaadin.shared.ui.ValueChangeMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import org.rapidpm.ddi.DI;
 import org.rapidpm.dependencies.core.logger.HasLogger;
 import org.rapidpm.frp.functions.CheckedExecutor;
+import org.rapidpm.vaadin.addons.framework.Registration;
 import org.rapidpm.vaadin.shared.Customer;
 import org.rapidpm.vaadin.srv.CustomerService;
 import org.rapidpm.vaadin.srv.CustomerServiceImpl;
 import org.rapidpm.vaadin.srv.PropertyService;
 import org.rapidpm.vaadin.ui.components.CustomerForm;
-
-import javax.inject.Inject;
 
 import static org.rapidpm.vaadin.shared.Constants.REGISTRY_BASE_KEY;
 

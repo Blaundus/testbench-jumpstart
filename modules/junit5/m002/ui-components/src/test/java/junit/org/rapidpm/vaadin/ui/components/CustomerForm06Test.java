@@ -16,7 +16,7 @@ public class CustomerForm06Test {
   public void test001(@PageObject CustomerFormPageObject pageObject) {
     pageObject.loadPage();
     Assert.assertTrue(pageObject.saveButton()
-                          .getClassNames()
-                          .contains("v-button-" + ValoTheme.BUTTON_PRIMARY));
+                                .getClassNames()
+                                .contains("v-button-" + ValoTheme.BUTTON_PRIMARY));
   }
 }

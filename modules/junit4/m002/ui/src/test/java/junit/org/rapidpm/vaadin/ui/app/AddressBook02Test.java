@@ -15,10 +15,10 @@ public class AddressBook02Test extends AddressBook {
     //filter
     filterTextField().setValue("Lara");
 
-    Assert.assertEquals("Lara" , getFirstNameAtIndex(0));
-    Assert.assertEquals("Martin" , getLastNameAtIndex(0));
+    Assert.assertEquals("Lara", getFirstNameAtIndex(0));
+    Assert.assertEquals("Martin", getLastNameAtIndex(0));
 
-    Assert.assertEquals(1L , dataGrid().getRowCount());
+    Assert.assertEquals(1L, dataGrid().getRowCount());
 
     clearFilterBTN().click();
 

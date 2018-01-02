@@ -31,57 +31,10 @@ import static org.rapidpm.frp.Transformations.not;
 /**
  *
  */
-public abstract class BaseVaadinTestClass extends TestBenchTestCase{
+public abstract class BaseVaadinTestClass extends TestBenchTestCase {
 
 
   protected String url;
-
-
-  @Before
-  public void setUp()
-      throws Exception {
-    System.setProperty(MainUndertow.REST_PORT_PROPERTY , new PortUtils().nextFreePortForTest() + "");
-    System.setProperty(MainUndertow.SERVLET_PORT_PROPERTY , new PortUtils().nextFreePortForTest() + "");
-    System.setProperty(MainUndertow.SERVLET_HOST_PROPERTY , ipSupplierLocalIP.get());
-    System.setProperty(MainUndertow.REST_HOST_PROPERTY , ipSupplierLocalIP.get());
-    url = "http://"+ipSupplierLocalIP.get()+":" + System.getProperty(MainUndertow.SERVLET_PORT_PROPERTY) + MainUndertow.MYAPP; //from Annotation Servlet
-    System.out.println("url = " + url);
-
-    DI.clearReflectionModel();
-    DI.activatePackages("org.rapidpm");
-    DI.activatePackages(this.getClass());
-    DI.activateDI(this);
-    Main.deploy();
-
-
-    final URL url = new URL("http://" + ipSupplierLocalIP.get() + ":4444/wd/hub");
-    final RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, DesiredCapabilities.chrome());
-    final WebDriver webDriver = TestBench.createDriver(remoteWebDriver);
-
-    setDriver(webDriver);
-
-    //data init -> depending on the Singleton
-    ((CustomerServiceImpl)CustomerServiceImpl.getInstance()).resetData();
-  }
-
-  @After
-  public void tearDown()
-      throws Exception {
-    ((CheckedExecutor) () -> getDriver().quit()).execute();
-    ((CheckedExecutor) Main::stop).execute();
-    ((CheckedExecutor) DI::clearReflectionModel).execute();
-
-  }
-
-  //TODO inheritance is slowing down without benefits
-//  @Test
-//  public void testAddressBook() {
-//    getDriver().get(url);
-//    Assert.assertTrue($(GridElement.class).exists());
-//  }
-
-
-
   Supplier<String> ipSupplierLocalIP = () -> {
     final CheckedSupplier<Enumeration<NetworkInterface>> checkedSupplier = NetworkInterface::getNetworkInterfaces;
 
@@ -101,5 +54,48 @@ public abstract class BaseVaadinTestClass extends TestBenchTestCase{
         //            .filter(adr -> range(224, 240).noneMatch(nr -> adr.startsWith(valueOf(nr))))
         .findFirst().orElse("localhost");
   };
+
+  @Before
+  public void setUp()
+      throws Exception {
+    System.setProperty(MainUndertow.REST_PORT_PROPERTY, new PortUtils().nextFreePortForTest() + "");
+    System.setProperty(MainUndertow.SERVLET_PORT_PROPERTY, new PortUtils().nextFreePortForTest() + "");
+    System.setProperty(MainUndertow.SERVLET_HOST_PROPERTY, ipSupplierLocalIP.get());
+    System.setProperty(MainUndertow.REST_HOST_PROPERTY, ipSupplierLocalIP.get());
+    url = "http://" + ipSupplierLocalIP.get() + ":" + System.getProperty(MainUndertow.SERVLET_PORT_PROPERTY) + MainUndertow.MYAPP; //from Annotation Servlet
+    System.out.println("url = " + url);
+
+    DI.clearReflectionModel();
+    DI.activatePackages("org.rapidpm");
+    DI.activatePackages(this.getClass());
+    DI.activateDI(this);
+    Main.deploy();
+
+
+    final URL             url             = new URL("http://" + ipSupplierLocalIP.get() + ":4444/wd/hub");
+    final RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, DesiredCapabilities.chrome());
+    final WebDriver       webDriver       = TestBench.createDriver(remoteWebDriver);
+
+    setDriver(webDriver);
+
+    //data init -> depending on the Singleton
+    ((CustomerServiceImpl) CustomerServiceImpl.getInstance()).resetData();
+  }
+
+  //TODO inheritance is slowing down without benefits
+//  @Test
+//  public void testAddressBook() {
+//    getDriver().get(url);
+//    Assert.assertTrue($(GridElement.class).exists());
+//  }
+
+  @After
+  public void tearDown()
+      throws Exception {
+    ((CheckedExecutor) () -> getDriver().quit()).execute();
+    ((CheckedExecutor) Main::stop).execute();
+    ((CheckedExecutor) DI::clearReflectionModel).execute();
+
+  }
 
 }

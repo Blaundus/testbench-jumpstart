@@ -1,9 +1,9 @@
 package junit.org.rapidpm.vaadin;
 
-import org.openqa.selenium.WebDriver;
 import com.vaadin.testbench.TestBenchTestCase;
 import com.vaadin.testbench.elements.ButtonElement;
 import com.vaadin.testbench.elements.GridElement;
+import org.openqa.selenium.WebDriver;
 
 public class AddressBook extends TestBenchTestCase {
 
@@ -14,21 +14,21 @@ public class AddressBook extends TestBenchTestCase {
   public String getLastNameAtIndex(int index) {
     return $(GridElement.class)
         .first()
-        .getCell(index , 1)
+        .getCell(index, 1)
         .getText();
   }
 
   public String getFirstNameAtIndex(int index) {
     return $(GridElement.class)
         .first()
-        .getCell(index , 0)
+        .getCell(index, 0)
         .getText();
   }
 
   public EntryForm selectEntryAtIndex(int index) {
     $(GridElement.class)
         .first()
-        .getCell(index , 0)
+        .getCell(index, 0)
         .click();
     return new EntryForm(getDriver());
   }

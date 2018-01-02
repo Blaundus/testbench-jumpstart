@@ -14,10 +14,10 @@ public class AddressBook03Test extends AddressBook {
 
     //filter
     filterTextField().setValue("Lara");
-    Assert.assertEquals(1L , dataGrid().getRowCount());
+    Assert.assertEquals(1L, dataGrid().getRowCount());
 
     selectEntryAtIndex(0).deleteEntry();
-    Assert.assertEquals(0L , dataGrid().getRowCount());
+    Assert.assertEquals(0L, dataGrid().getRowCount());
   }
 
 }

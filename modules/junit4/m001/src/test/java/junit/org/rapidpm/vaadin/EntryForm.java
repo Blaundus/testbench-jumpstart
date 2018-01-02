@@ -1,10 +1,10 @@
 package junit.org.rapidpm.vaadin;
 
-import org.openqa.selenium.WebDriver;
 import com.vaadin.testbench.TestBenchTestCase;
 import com.vaadin.testbench.elements.ButtonElement;
 import com.vaadin.testbench.elements.FormLayoutElement;
 import com.vaadin.testbench.elements.TextFieldElement;
+import org.openqa.selenium.WebDriver;
 
 public class EntryForm extends TestBenchTestCase {
 

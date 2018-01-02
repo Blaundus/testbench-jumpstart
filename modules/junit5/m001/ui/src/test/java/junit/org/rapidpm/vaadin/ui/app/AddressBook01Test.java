@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class AddressBook01Test extends AddressBook {
 
   public static final String FIRST_NAME = "Alfred";
-  public static final String LAST_NAME = "Mueller";
+  public static final String LAST_NAME  = "Mueller";
 
   @Test
   public void test001() {
@@ -20,18 +20,18 @@ public class AddressBook01Test extends AddressBook {
     newEntry.setLastName(LAST_NAME);
     newEntry.saveEntry();
 
-    dataGrid().getCell(6 , 0).click();
-    Assert.assertNotEquals(FIRST_NAME , activeCustomerForm().getFirstName());
-    Assert.assertNotEquals(LAST_NAME , activeCustomerForm().getLastName());
+    dataGrid().getCell(6, 0).click();
+    Assert.assertNotEquals(FIRST_NAME, activeCustomerForm().getFirstName());
+    Assert.assertNotEquals(LAST_NAME, activeCustomerForm().getLastName());
 
-    dataGrid().getCell(0 , 0).click();
+    dataGrid().getCell(0, 0).click();
 
     Assert.assertFalse(dataGrid().isSelected());
 
-    Assert.assertEquals(FIRST_NAME , dataGrid().getCell(0 , 0).getText());
-    Assert.assertEquals(LAST_NAME , dataGrid().getCell(0 , 1).getText());
-    Assert.assertEquals(FIRST_NAME , activeCustomerForm().getFirstName());
-    Assert.assertEquals(LAST_NAME , activeCustomerForm().getLastName());
+    Assert.assertEquals(FIRST_NAME, dataGrid().getCell(0, 0).getText());
+    Assert.assertEquals(LAST_NAME, dataGrid().getCell(0, 1).getText());
+    Assert.assertEquals(FIRST_NAME, activeCustomerForm().getFirstName());
+    Assert.assertEquals(LAST_NAME, activeCustomerForm().getLastName());
   }
 
 

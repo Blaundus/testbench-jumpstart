@@ -23,12 +23,12 @@ public class CustomerForm05Test {
     pageObject.loadPage();
 
     final List<WebElement> elements = pageObject.getDriver().findElements(new By.ById(TestUI.CUSTOMER_FORM));
-    Assert.assertEquals(1 , elements.size());
+    Assert.assertEquals(1, elements.size());
 
     // test save Shortcut
     pageObject.firstnameTF().sendKeys(Keys.chord(Keys.BACK_SPACE));
     pageObject.getDriver().findElement(By.tagName("html")).sendKeys(Keys.chord(Keys.ENTER));
-    Assert.assertEquals(0 , pageObject.getDriver().findElements(new By.ById(TestUI.CUSTOMER_FORM)).size());
+    Assert.assertEquals(0, pageObject.getDriver().findElements(new By.ById(TestUI.CUSTOMER_FORM)).size());
 
     pageObject.clickSwitchButton();
     Assert.assertFalse(pageObject.$(FormLayoutElement.class).$(ButtonElement.class).caption("Delete").all().isEmpty());
