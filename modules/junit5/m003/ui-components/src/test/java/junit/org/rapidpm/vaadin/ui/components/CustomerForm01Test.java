@@ -1,6 +1,5 @@
 package junit.org.rapidpm.vaadin.ui.components;
 
-import com.vaadin.testbench.elements.TextFieldElement;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.rapidpm.vaadin.addons.testbench.junit5.extensions.unittest.VaadinUnitTest;

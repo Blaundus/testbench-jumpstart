@@ -27,8 +27,12 @@ public class CustomerForm extends FormLayout implements HasLogger {
     this.myUI = myUI;
 
     setSizeUndefined();
-    HorizontalLayout buttons = new HorizontalLayout(save, delete);
-    addComponents(firstName, lastName, email, status, birthdate, buttons);
+    addComponents(firstName,
+                  lastName,
+                  email,
+                  status,
+                  birthdate,
+                  new HorizontalLayout(save, delete));
 
     status.setItems(CustomerStatus.values());
     save.setStyleName(ValoTheme.BUTTON_PRIMARY);
@@ -45,8 +49,7 @@ public class CustomerForm extends FormLayout implements HasLogger {
     beanBinder.setBean(customer);
 
     // Show delete button for only customers already in the database
-    boolean visible = (customer != null) && customer.isPersisted();
-    delete.setVisible(visible);
+    delete.setVisible((customer != null) && customer.isPersisted());
     setVisible(true);
     firstName.selectAll();
   }

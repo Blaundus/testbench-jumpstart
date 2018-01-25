@@ -16,31 +16,34 @@ import static org.rapidpm.frp.matcher.Case.match;
 import static org.rapidpm.frp.matcher.Case.matchCase;
 import static org.rapidpm.frp.model.Result.failure;
 import static org.rapidpm.frp.model.Result.success;
+import static org.rapidpm.vaadin.addons.framework.ComponentIDGenerator.*;
 
 /**
  *
  */
 public class TestUI extends UI {
 
-  public static final String                       TEST_SWITCH_BUTTON = "testSwitchButton";
-  public static final String                       REGISTER_BUTTON    = "testRegisterButton";
-  public static final String                       FIRST_NAME         = "firstName";
-  public static final String                       LAST_NAME          = "lastName";
-  public static final String                       EMAIL              = "email";
-  public static final String                       BIRTHDAY           = "birthday";
-  public static final String                       CUSTOMER_FORM      = "customerForm";
-  public static final String                       ID                 = "customerID";
-  private final       Button                       register           = new Button("register");
-  // attributes for testing last Event.
-  private final       TextField                    firstName          = new TextField("First name");
-  private final       TextField                    lastName           = new TextField("Last name");
-  private final       TextField                    email              = new TextField("Email");
-  private final       NativeSelect<CustomerStatus> status             = new NativeSelect<>("Status");
-  private final       DateField                    birthday           = new DateField("Birthday");
-  private final       TextField                    id                 = new TextField("Customer ID");
-  private final       Binder<Customer>             beanBinder         = new Binder<>(Customer.class);
-  private final       CustomerForm                 customerForm       = new CustomerForm();
-  private Customer     fromLastEvent;
+  public static final String TEST_SWITCH_BUTTON = buttonID().apply(TestUI.class, "testSwitchButton");
+  public static final String REGISTER_BUTTON    = buttonID().apply(TestUI.class, "testRegisterButton");
+  public static final String FIRST_NAME         = textfieldID().apply(TestUI.class, "firstName");
+  public static final String LAST_NAME          = textfieldID().apply(TestUI.class, "lastName");
+  public static final String EMAIL              = textfieldID().apply(TestUI.class, "email");
+  public static final String BIRTHDAY           = dateFieldID().apply(TestUI.class, "birthday");
+  public static final String CUSTOMER_FORM      = genericID().apply(CustomerForm.class, TestUI.class, "customerForm");
+  public static final String ID                 = textfieldID().apply(TestUI.class, "customerID");
+
+
+  private final TextField                    firstName    = new TextField("First name");
+  private final TextField                    lastName     = new TextField("Last name");
+  private final TextField                    email        = new TextField("Email");
+  private final NativeSelect<CustomerStatus> status       = new NativeSelect<>("Status");
+  private final DateField                    birthday     = new DateField("Birthday");
+  private final TextField                    id           = new TextField("Customer ID");
+  private final Binder<Customer>             beanBinder   = new Binder<>(Customer.class);
+  private final CustomerForm                 customerForm = new CustomerForm();
+
+  private Customer fromLastEvent;
+
   private Registration deleteRegistration;
   private Registration saveRegistration;
 
@@ -57,19 +60,16 @@ public class TestUI extends UI {
     birthday.setId(BIRTHDAY);
     id.setId(ID);
 
-    customerForm.setId(CUSTOMER_FORM);
+    status.setItems(CustomerStatus.values());
 
     initCustomerValue();
-
+    customerForm.setId(CUSTOMER_FORM);
     customerForm.setCustomer(fromLastEvent);
-
-    status.setItems(CustomerStatus.values());
 
     final CustomerForm.UpdateEvent updateEvenDelete = customer -> {
       fromLastEvent = customer;
       fromLastEvent.setId(-1L);
       beanBinder.setBean(fromLastEvent);
-
     };
     deleteRegistration = customerForm.registerDeleteListener(updateEvenDelete);
 
@@ -77,20 +77,10 @@ public class TestUI extends UI {
       fromLastEvent = customer;
       fromLastEvent.setId((fromLastEvent == null) ? 1L : fromLastEvent.getId() + 1);
       beanBinder.setBean(fromLastEvent);
-
     };
     saveRegistration = customerForm.registerSaveListener(updateEvenSave);
 
 
-    //make Customer from last Event available
-    final VerticalLayout testAttibutes = new VerticalLayout();
-    testAttibutes.addComponents(id,
-                                firstName,
-                                lastName,
-                                email,
-                                birthday,
-                                status
-    );
     beanBinder.bindInstanceFields(this);
 
     // button to make Form visible again
@@ -98,7 +88,7 @@ public class TestUI extends UI {
     aSwitch.setId(TEST_SWITCH_BUTTON);
     aSwitch.addClickListener((Button.ClickListener) event -> customerForm.setCustomer(fromLastEvent));
 
-
+    final Button register = new Button("register");
     register.setId(REGISTER_BUTTON);
     register.addClickListener(
         e ->
@@ -134,6 +124,13 @@ public class TestUI extends UI {
             )
     );
 
+    final VerticalLayout testAttibutes = new VerticalLayout(id,
+                                                            firstName,
+                                                            lastName,
+                                                            email,
+                                                            birthday,
+                                                            status
+    );
 
     final VerticalLayout layout = new VerticalLayout(customerForm, aSwitch, register, testAttibutes);
 
