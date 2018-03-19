@@ -1,6 +1,7 @@
 .idea/*
 *.iml
 /modules/m001/_data/webdrivers/
+config.properties
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Eclipse template
@@ -161,7 +162,6 @@ dist/
 nbdist/
 .nb-gradle/
 
-.gitignore
 chromedriver-mac-64bit
 chromedriver-mac-64bit.version
 geckodriver-mac-64bit

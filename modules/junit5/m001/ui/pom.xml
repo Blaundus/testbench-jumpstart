@@ -75,9 +75,6 @@
             <driver>
               <name>geckodriver</name>
             </driver>
-            <driver>
-              <name>phantomjs</name>
-            </driver>
           </drivers>
         </configuration>
       </plugin>

@@ -1,6 +1,8 @@
 package junit.org.rapidpm.vaadin.ui.components;
 
-import com.vaadin.testbench.elements.*;
+import com.vaadin.testbench.elements.ButtonElement;
+import com.vaadin.testbench.elements.ComboBoxElement;
+import com.vaadin.testbench.elements.TextFieldElement;
 import org.openqa.selenium.WebDriver;
 import org.rapidpm.vaadin.addons.testbench.junit5.pageobject.AbstractVaadinPageObject;
 import org.rapidpm.vaadin.ui.components.CustomerForm;

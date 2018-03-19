@@ -8,7 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.rapidpm.vaadin.addons.testbench.junit5.extensions.unittest.VaadinUnitTest;
-import org.rapidpm.vaadin.addons.testbench.junit5.pageobject.PageObject;
 
 import java.util.List;
 
@@ -19,7 +18,7 @@ import java.util.List;
 public class CustomerForm05Test {
 
   @Test
-  public void test001(@PageObject CustomerFormPageObject pageObject) {
+  public void test001(CustomerFormPageObject pageObject) {
     pageObject.loadPage();
 
     final List<WebElement> elements = pageObject.getDriver().findElements(new By.ById(TestUI.CUSTOMER_FORM));

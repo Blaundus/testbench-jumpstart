@@ -1,6 +1,6 @@
 package junit.org.rapidpm.vaadin.srv;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.rapidpm.vaadin.shared.Customer;
 import org.rapidpm.vaadin.srv.CustomerService;
@@ -20,7 +20,7 @@ public class CustomerServiceTest {
     final CustomerService instance = CustomerServiceImpl.getInstance();
     final List<Customer>  all      = instance.findAll();
 
-    Assert.assertEquals(30, all.size());
+    Assertions.assertEquals(30, all.size());
     //how to test this ?
 
   }

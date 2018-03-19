@@ -11,14 +11,6 @@
 
   <artifactId>tb-jumpstart-m-junit5-m001-ui-components</artifactId>
 
-
-  <!--Mutation Testing scope-->
-  <!--<properties>-->
-    <!--<pitest-prod-classes>org.rapidpm.vaadin.ui.components.*</pitest-prod-classes>-->
-    <!--<pitest-test-classes>junit.org.rapidpm.*</pitest-test-classes>-->
-  <!--</properties>-->
-
-
   <dependencies>
     <dependency>
       <groupId>org.rapidpm.vaadin</groupId>
@@ -85,9 +77,7 @@
             <driver>
               <name>geckodriver</name>
             </driver>
-            <driver>
-              <name>phantomjs</name>
-            </driver>
+
           </drivers>
         </configuration>
       </plugin>

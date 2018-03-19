@@ -10,6 +10,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>tb-jumpstart-m-junit5-m001</artifactId>
+
+
   <packaging>pom</packaging>
   <modules>
     <module>srv</module>

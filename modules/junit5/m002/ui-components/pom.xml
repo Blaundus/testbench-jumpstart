@@ -57,14 +57,36 @@
 
 
     <!--Testbench Add Ons-->
-
+    <dependency>
+      <groupId>org.rapidpm</groupId>
+      <artifactId>rapidpm-vaadin-addons-modules-junit5</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.rapidpm</groupId>
+      <artifactId>rapidpm-vaadin-addons-modules-framework</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.rapidpm</groupId>
+      <artifactId>rapidpm-vaadin-addons-modules-di-ddi</artifactId>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.rapidpm</groupId>
       <artifactId>rapidpm-vaadin-addons-modules-testbench</artifactId>
       <scope>test</scope>
     </dependency>
-
-
+    <dependency>
+      <groupId>org.rapidpm</groupId>
+      <artifactId>rapidpm-vaadin-addons-modules-container-initializer</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.rapidpm</groupId>
+      <artifactId>rapidpm-vaadin-addons-modules-container-initializer-rapidpm</artifactId>
+      <scope>test</scope>
+    </dependency>
 
   </dependencies>
 

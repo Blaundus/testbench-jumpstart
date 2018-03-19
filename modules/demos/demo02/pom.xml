@@ -19,4 +19,12 @@
     <module>ui</module>
   </modules>
 
+
+  <dependencies>
+    <dependency>
+      <groupId>org.rapidpm</groupId>
+      <artifactId>rapidpm-dependencies-core-logger</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

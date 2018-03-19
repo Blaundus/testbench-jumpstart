@@ -5,6 +5,7 @@ import com.vaadin.testbench.TestBenchTestCase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.rapidpm.ddi.DI;
@@ -15,6 +16,7 @@ import org.rapidpm.frp.functions.CheckedSupplier;
 import org.rapidpm.microservice.Main;
 import org.rapidpm.microservice.MainUndertow;
 
+import java.io.File;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -72,12 +74,13 @@ public abstract class BaseVaadinTestClass extends TestBenchTestCase {
     Main.deploy();
 
 
-    final URL             hubURL          = new URL("http://" + ipSupplierLocalIP.get() + ":4444/wd/hub");
-    final RemoteWebDriver remoteWebDriver = new RemoteWebDriver(hubURL, DesiredCapabilities.chrome());
-    final WebDriver       webDriver       = TestBench.createDriver(remoteWebDriver);
+//    final URL             hubURL          = new URL("http://" + ipSupplierLocalIP.get() + ":4444/wd/hub");
+//    final RemoteWebDriver remoteWebDriver = new RemoteWebDriver(hubURL, DesiredCapabilities.chrome());
+//    final WebDriver       webDriver       = TestBench.createDriver(remoteWebDriver);
 
-    setDriver(webDriver);
-//    setDriver(new ChromeDriver());
+//    setDriver(webDriver);
+    System.setProperty("webdriver.chrome.driver", "./_data/webdrivers/chromedriver-mac-64bit");
+    setDriver(new ChromeDriver());
 //    setDriver(new FirefoxDriver());
 //    setDriver(new SafariDriver());
 //    setDriver(new OperaDriver());

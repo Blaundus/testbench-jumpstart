@@ -7,9 +7,9 @@ import java.util.*;
 
 public class CustomerService implements HasLogger {
 
-  private static CustomerService instance;
-  private final Map<Long, Customer> contacts = new HashMap<>();
-  private       long                nextId   = 0;
+  private static CustomerService     instance;
+  private final  Map<Long, Customer> contacts = new HashMap<>();
+  private        long                nextId   = 0;
 
   private CustomerService() {
   }

@@ -39,7 +39,7 @@ public class MyUI extends UI implements HasLogger {
   private final TextField      filterText         = new TextField();
   private final CustomerForm   customerForm       = new CustomerForm();
   private final Button         clearFilterTextBtn = new Button(FontAwesome.TIMES);
-  private final Button         addCustomerBtn     = new Button(NEW_CUSTOMER_BTN_CAPTION);
+  private final Button         addCustomerBtn     = new Button();
 
   //  @Inject private PropertyService propertyService;
   private final PropertyService propertyService = DI.activateDI(PropertyService.class);
@@ -66,6 +66,7 @@ public class MyUI extends UI implements HasLogger {
     filtering.setStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
 
     addCustomerBtn.setId(NEW_CUSTOMER_BTN_ID);
+    addCustomerBtn.setCaption(resolve(NEW_CUSTOMER_BTN_CAPTION));
     addCustomerBtn.addClickListener(e -> {
       grid.asSingleSelect().clear();
       customerForm.setCustomer(new Customer());

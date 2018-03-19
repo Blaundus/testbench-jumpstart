@@ -4,9 +4,7 @@ import com.vaadin.testbench.elements.ButtonElement;
 import com.vaadin.testbench.elements.FormLayoutElement;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.rapidpm.ddi.DI;
 import org.rapidpm.vaadin.addons.testbench.junit5.extensions.unittest.VaadinUnitTest;
-import org.rapidpm.vaadin.addons.testbench.junit5.pageobject.PageObject;
 import org.rapidpm.vaadin.srv.PropertyService;
 import org.rapidpm.vaadin.srv.PropertyServiceInMemory;
 import org.rapidpm.vaadin.ui.components.CustomerForm;
@@ -25,7 +23,7 @@ public class CustomerForm03Test {
   }
 
   @Test
-  public void test001(@PageObject CustomerFormPageObject pageObject) {
+  public void test001(CustomerFormPageObject pageObject) {
     pageObject.loadPage();
     Assert.assertTrue(pageObject.deleteButton().isDisplayed());
     pageObject.deleteEntry();

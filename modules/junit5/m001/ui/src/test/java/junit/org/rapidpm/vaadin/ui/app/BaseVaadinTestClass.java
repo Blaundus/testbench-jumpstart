@@ -5,6 +5,7 @@ import com.vaadin.testbench.TestBenchTestCase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.rapidpm.ddi.DI;
@@ -72,12 +73,13 @@ public abstract class BaseVaadinTestClass extends TestBenchTestCase {
     Main.deploy();
 
 
-    final URL             url             = new URL("http://" + ipSupplierLocalIP.get() + ":4444/wd/hub");
-    final RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, DesiredCapabilities.chrome());
-    final WebDriver       webDriver       = TestBench.createDriver(remoteWebDriver);
-
-    setDriver(webDriver);
-
+//    final URL             url             = new URL("http://" + ipSupplierLocalIP.get() + ":4444/wd/hub");
+//    final RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, DesiredCapabilities.chrome());
+//    final WebDriver       webDriver       = TestBench.createDriver(remoteWebDriver);
+//
+//    setDriver(webDriver);
+    System.setProperty("webdriver.chrome.driver", "./_data/webdrivers/chromedriver-mac-64bit");
+    setDriver(new ChromeDriver());
     //data init -> depending on the Singleton
     ((CustomerServiceImpl) CustomerServiceImpl.getInstance()).resetData();
   }
